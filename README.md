@@ -1,19 +1,77 @@
+<img src="app/assets/app-icon.svg" width="72" height="72" alt="Ícone da Roleta de Operações">
+
 # Roleta de Operações
 
-Aplicativo desktop independente para Windows, com menu de adição, subtração, multiplicação e divisão. Funciona offline desde a primeira abertura. HTML, CSS e JavaScript rodam dentro do Electron; o formato de entrega é um aplicativo `.exe`, acompanhado por instalador completo e ZIP.
+Aplicativo educativo para praticar **adição, subtração, multiplicação e divisão** em sala de aula. A turma gira a roleta, resolve a conta selecionada e confere o resultado quando quiser.
 
-## Executar em desenvolvimento no Windows
+Funciona em uma janela própria no Windows e **sem internet desde a primeira abertura**. A distribuição inclui o motor de execução e todos os recursos visuais. O computador da escola não precisa de PowerPoint, Node.js instalado, navegador externo, conta no ChatGPT ou login.
 
-Requisitos do computador de desenvolvimento: Node.js 22.12 ou posterior e npm. Ambiente usado: Node.js 24.15.0 e npm 11.12.1. No PowerShell, dentro desta pasta:
+## Recursos
+
+- Menu com as quatro operações e configurações independentes para cada categoria.
+- Intervalos numéricos ajustáveis e opção de fixar um número igualando mínimo e máximo.
+- Dez setores com contas diferentes quando há combinações suficientes; menos setores quando necessário.
+- Renovação das contas ao entrar na categoria ou clicar em **Novas contas**.
+- Um clique em **Girar**, com desaceleração e parada automática.
+- Seta, conta selecionada e resultado vinculados ao mesmo setor.
+- Botão **Mostrar resposta**, disponível depois da parada.
+- Configurações preservadas entre sessões e modo de tela cheia com **F11**.
+- Recursos visuais reaproveitados do PowerPoint original, com os personagens separados da roleta.
+
+## Uso na escola
+
+Use o instalador ou o ZIP da distribuição Windows gerada a partir deste projeto:
+
+| Formato | Como abrir |
+| --- | --- |
+| Instalador `.exe` | Execute o instalador e abra **Roleta de Operações** pelo atalho criado |
+| ZIP do aplicativo | Extraia **todos** os arquivos para uma pasta e abra `Roleta de Operações.exe` |
+
+Mantenha o executável e seus arquivos auxiliares juntos. O instalador contém o aplicativo completo e instala por usuário, sem exigir elevação administrativa.
+
+**Este repositório contém o código-fonte.** Os instaladores e ZIPs compilados ficam em `dist/`, que não é versionado. O ZIP baixado pelo botão **Code** do GitHub contém os fontes e precisa ser empacotado conforme a seção [Gerar a distribuição Windows](#gerar-a-distribuição-windows).
+
+Para começar a atividade:
+
+1. Escolha uma operação no menu.
+2. Abra **Ajustar números** para definir os intervalos da rodada.
+3. Clique em **Girar** e aguarde a parada automática.
+4. Resolva a conta indicada pela seta e clique em **Mostrar resposta**.
+5. Use **Novas contas** para continuar ou volte ao menu para trocar de operação.
+
+**F11** alterna tela cheia e **Esc** sai desse modo. Consulte também o [guia de uso](LEIA-ME.txt).
+
+## Compatibilidade
+
+| Item | Suporte desta distribuição |
+| --- | --- |
+| Sistema operacional | Windows 10 ou Windows 11 |
+| Arquitetura | x64, para processadores Intel/AMD de 64 bits |
+| Internet durante a atividade | Não é necessária, inclusive na primeira abertura |
+| Dependências no computador da escola | Já incluídas no pacote |
+
+Windows 7, 8, 8.1 e Windows de 32 bits não são suportados. Uma versão nativa ARM64 exige outro empacotamento e validação. O suporte da plataforma segue o [Electron 44.3.0 utilizado pelo projeto](https://github.com/electron/electron/blob/v44.3.0/README.md#platform-support).
+
+A versão 1.0.0 não possui assinatura digital. A equipe de TI da escola deve verificar eventuais bloqueios de execução, SmartScreen ou modo S. Também é necessário testar a primeira abertura com a rede desligada, a escala e legibilidade no projetor e a fluidez da animação no equipamento real. Os testes locais e suas limitações estão no [registro de validação](docs/validacao.md).
+
+## Desenvolvimento
+
+No computador de desenvolvimento, instale **Git**, **Node.js 22.12 ou posterior** e **npm**. O ambiente usado na versão 1.0.0 foi Node.js 24.15.0 e npm 11.12.1.
+
+Clone o repositório e execute no PowerShell:
 
 ```powershell
+git clone https://github.com/grbvieira/Roleta-de-Operacoes.git
+cd Roleta-de-Operacoes
 npm.cmd ci
 npm.cmd start
 ```
 
-As dependências já foram instaladas nesta pasta. Em uma cópia nova do projeto, `npm.cmd ci` reproduz as versões do `package-lock.json`. O primeiro uso do Electron também pode baixar seu binário no computador de desenvolvimento. A janela desktop abre diretamente, sem servidor e sem navegador externo.
+`npm.cmd ci` instala as versões registradas no `package-lock.json`. A instalação das dependências e o primeiro download do Electron precisam de internet no computador de desenvolvimento. `npm.cmd start` abre a janela desktop diretamente, sem servidor ou navegador externo. Feche a janela para encerrar essa execução.
 
-## Testar
+As ferramentas do projeto são dependências locais; não é necessário instalá-las globalmente.
+
+## Testes
 
 ```powershell
 npm.cmd test
@@ -35,7 +93,7 @@ npm.cmd run test:packaged
 npm.cmd run verify:distribution
 ```
 
-O empacotamento pode precisar de internet **no computador de desenvolvimento** para baixar Electron, NSIS e ferramentas ausentes do cache. Os caches de build ficam em `.cache/`. Não há publicação automática.
+Execute os comandos acima na raiz do projeto, depois de instalar as dependências. O empacotamento pode precisar de internet **no computador de desenvolvimento** para baixar Electron, NSIS e ferramentas ausentes do cache. Os caches ficam em `.cache/`. A geração dos pacotes não publica uma release no GitHub.
 
 Arquivos de entrega:
 
@@ -44,21 +102,11 @@ dist/Roleta-Operacoes-1.0.0-Windows-x64-Instalador.exe
 dist/Roleta-Operacoes-1.0.0-Windows-x64.zip
 ```
 
-O instalador NSIS contém o aplicativo completo e instala por usuário, sem exigir elevação. O ZIP oferece a alternativa sem instalação: extrair a pasta inteira e abrir `Roleta de Operações.exe`. Nunca copiar apenas o EXE; ele usa as bibliotecas e recursos que o acompanham. O PowerPoint original e as ferramentas de desenvolvimento não são incluídos.
+Esses são os nomes gerados para a versão 1.0.0. Para levar a atividade à escola, copie o instalador ou o ZIP completo. O PowerPoint original e as ferramentas de desenvolvimento não são incluídos na distribuição.
 
 `npm.cmd run pack:win` produz apenas a pasta `dist/win-unpacked/`, útil para validar uma compilação rapidamente. `test:packaged` executa essa pasta com perfil vazio e rede emulada offline. Os mesmos arquivos da pasta compõem o ZIP e o instalador; a instalação do NSIS e as políticas do computador da escola exigem validação separada.
 
 `verify:distribution` confere se o código e os recursos dentro do pacote correspondem às fontes e registra o SHA-256 do instalador e do ZIP em `dist/SHA256SUMS.txt`. Requer a distribuição completa gerada por `dist:win`.
-
-## Compatibilidade e uso na escola
-
-- **Windows 10 e Windows 11 x64**, em processadores Intel/AMD de 64 bits.
-- Electron 44.3.0 declara suporte a Windows 10 e posteriores, com binários x64 e ARM64. Este projeto empacota somente x64. [Fonte da versão utilizada](https://github.com/electron/electron/blob/v44.3.0/README.md#platform-support).
-- Windows 7, 8, 8.1 e Windows de 32 bits não são suportados. ARM64 requer outra distribuição e validação.
-- A escola não precisa de PowerPoint, Node.js instalado, navegador externo, ChatGPT, conta ou internet. Chromium, Node.js e recursos locais estão incluídos.
-- F11 alterna tela cheia; Esc sai da tela cheia. A janela aceita redimensionamento e oferece rolagem vertical quando necessário.
-- Esta primeira distribuição não é assinada digitalmente. A equipe de TI da escola deverá validar eventuais bloqueios de execução/SmartScreen, sem desativar proteções.
-- Ainda dependem do computador da escola: versão/arquitetura do Windows, modo S ou outras restrições, abertura/instalação por usuário comum, escala e legibilidade no projetor, fluidez da animação e teste offline real.
 
 ## Regras da atividade
 
@@ -88,6 +136,13 @@ O protocolo `roleta://app` lê somente arquivos locais empacotados, sem servidor
 
 ## Referência original
 
-`roleta da adição.pptx` permanece no local original, sem edição. Imagens foram copiadas de dentro do pacote PPTX, sem transformação. Sua origem está em `app/assets/ORIGEM.md`. Os personagens ocupam áreas separadas da roleta, corrigindo a sobreposição da referência.
+O arquivo `roleta da adição.pptx` está preservado na raiz do repositório. Imagens foram copiadas de dentro do pacote PPTX, sem transformação. O [registro de origem dos recursos](app/assets/ORIGEM.md) identifica cada arquivo. Os personagens ocupam áreas separadas da roleta, corrigindo a sobreposição da referência.
 
 SHA-256 esperado: `CF046654938448F25EAB8DE4D5D0C3F21A497E8EDF0A5FE6159B1AE6281B48C2`.
+
+## Documentação
+
+- [Guia para executar a atividade](LEIA-ME.txt)
+- [Diagnóstico e decisões de arquitetura](docs/diagnostico-inicial.md)
+- [Testes realizados e validações pendentes na escola](docs/validacao.md)
+- [Origem das imagens do PowerPoint](app/assets/ORIGEM.md)
