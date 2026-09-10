@@ -1,69 +1,57 @@
-# Validação da versão 1.0.0
+# Testes da versão 1.0.0
 
-Concluída em 10/09/2026, no ambiente Windows x64 de desenvolvimento, build 10.0.26200. O diagnóstico foi corrigido para aplicativo desktop independente. As entregas são um instalador NSIS completo e um ZIP para Windows x64.
+Registro dos testes realizados em 10/09/2026 no Windows x64, build 10.0.26200. Os resultados abaixo se referem à distribuição gerada nessa data.
 
-## Verificações concluídas
+## Cobertura e resultados
 
-| Verificação | Resultado |
-| --- | --- |
-| Testes unitários de matemática e roleta | 18 aprovados |
-| Espaço de contas válidas | Comparado com enumeração independente em 400 configurações |
-| Geração e renovação | 200 rodadas verificadas, sem duplicações e dentro dos limites |
-| Subtração e divisão | Sem resultados negativos; divisões exatas; divisor zero rejeitado |
-| Configurações impossíveis | Mensagens adequadas, sem travar a geração |
-| Seleção geométrica | Todos os destinos de 1 a 10 setores testados, incluindo giros sucessivos e bordas |
-| Desaceleração | Avanço monotônico, velocidade decrescente e ângulo final exato |
-| Interface em desenvolvimento | Quatro categorias, giro, resposta, configuração, renovação e persistência aprovados |
-| Executável empacotado | Mesmos fluxos aprovados no próprio `Roleta de Operações.exe` |
-| Primeira abertura offline | Perfil de usuário novo, rede emulada offline antes de carregar a atividade, imagens locais disponíveis |
-| Runtime incluído | Executável confirmou Electron 44.3.0 e Node.js incorporado 24.20.0 |
-| Setor, conta e resposta | Ponta da seta testada dentro da forma SVG real; texto e resultado correspondentes |
-| Leitura dos setores | Conta apontada horizontal e na orientação correta após a parada |
-| Rodadas pequenas | Roletas de três setores e um setor exercitadas na interface e no EXE |
-| Renovação | Novas contas ao renovar e reentrar; resposta anterior apagada |
-| Persistência | Configuração mantida ao fechar e reabrir o EXE |
-| Layout | Sem sobreposição dos personagens com a roleta ou rolagem horizontal em 960 × 680 |
-| Código e imagens no pacote | Idênticos aos arquivos-fonte conferidos |
-| Conteúdo do ZIP | `resources/app.asar` idêntico ao da pasta empacotada testada |
-| Identificação do EXE | Nome do produto e versão 1.0.0 gravados no executável, com ícone próprio |
-| PowerPoint original | SHA-256 preservado |
+| Área | Verificação | Resultado |
+| --- | --- | --- |
+| Matemática e roleta | 18 testes unitários | Aprovados |
+| Combinações válidas | Comparação com enumeração independente em 400 configurações | Aprovada |
+| Rodadas | 200 rodadas, limites, ausência de duplicações e renovação | Aprovadas |
+| Subtração e divisão | Resultados não negativos, divisões exatas e rejeição do divisor zero | Aprovadas |
+| Geometria | Destinos de 1 a 10 setores, bordas, giros sucessivos e desaceleração | Aprovada |
+| Interface e executável | Quatro operações, giro, resposta, ajustes e renovação | Aprovados |
+| Seleção | Ponta da seta dentro do setor SVG, conta e resposta correspondentes | Aprovada |
+| Persistência | Fechar e reabrir mantendo as configurações | Aprovada |
+| Layout | Janela de 960 × 680, sem sobreposição dos personagens ou rolagem horizontal | Aprovado |
+| Abertura offline emulada | Perfil novo e recursos locais disponíveis | Aprovada |
+| Pacote | Código e imagens iguais às fontes; `app.asar` do ZIP igual ao da pasta testada | Conferido |
+| PowerPoint | SHA-256 igual ao original | Conferido |
 
-Resultados automáticos estão em `test-results/desktop/resultado.json` e `test-results/packaged/resultado.json`. Nenhum erro JavaScript ou requisição HTTP/HTTPS foi registrado nos fluxos concluídos.
+Não foram registrados erros JavaScript nem requisições HTTP/HTTPS nos fluxos testados. O executável confirmou Electron 44.3.0 e Node.js incorporado 24.20.0.
 
-## Condições dos testes desktop
+## Como repetir
 
-Os testes executaram o aplicativo Electron real, em janela oculta, com perfil vazio. A renderização por software (`--disable-gpu`) evitou uma falha de captura do compositor de janelas ocultas. Essa opção é aplicada pelo script de teste e não pela inicialização normal do aplicativo.
+Na raiz do projeto, com as dependências instaladas:
 
-O teste emulado offline verifica o funcionamento sem rede e sem cache de uma sessão anterior. Não substitui uma execução no computador da escola com a conexão fisicamente desligada. O código bloqueia conexões externas e todos os recursos necessários estão incluídos na distribuição.
-
-A interface foi inspecionada em capturas do Electron. As asserções de seleção usam a geometria real do SVG, independentemente da função que calcula o setor, e calculam a resposta esperada separadamente.
-
-## Arquivos de entrega
-
-- `dist/Roleta-Operacoes-1.0.0-Windows-x64-Instalador.exe`: aproximadamente 107 MiB, instalador completo por usuário.
-- `dist/Roleta-Operacoes-1.0.0-Windows-x64.zip`: aproximadamente 147 MiB, aplicativo com todos os arquivos para extração e execução.
-- `dist/SHA256SUMS.txt`: hashes dos dois arquivos para conferência após a cópia.
-
-O instalador foi compilado, mas seu assistente de instalação não foi executado neste computador. O teste funcional usou `dist/win-unpacked/Roleta de Operações.exe`. O arquivo `app.asar` dentro do ZIP foi comparado com a pasta testada.
-
-O instalador e o aplicativo não têm assinatura digital. Isso foi confirmado na distribuição. Não há certificado de publicação configurado.
-
-## O que depende do computador da escola
-
-1. Confirmar Windows 10 ou Windows 11 x64. Windows 7, 8, 8.1, 32 bits e uma distribuição nativa ARM64 não estão no escopo desta entrega.
-2. Verificar instalação ou execução por um usuário comum, regras de antivírus/SmartScreen, restrições de aplicativos e eventual modo S. Se houver bloqueio, a equipe de TI precisa avaliar a liberação; não é necessário desativar proteções.
-3. Fazer a primeira abertura real com a rede desligada, usando o instalador ou o ZIP extraído integralmente.
-4. Verificar legibilidade, escala da tela, resolução do projetor, modo de tela cheia e funcionamento com mouse/teclado usados na atividade.
-5. Verificar a fluidez da roleta e a renderização com o hardware e os drivers gráficos locais.
-
-O suporte a Windows 10 e posteriores é declarado pelo [Electron 44.3.0](https://github.com/electron/electron/blob/v44.3.0/README.md#platform-support). A compatibilidade com a versão concreta da escola ainda exige esse teste local.
-
-## Preservação da referência
-
-SHA-256 de `roleta da adição.pptx`:
-
-```text
-CF046654938448F25EAB8DE4D5D0C3F21A497E8EDF0A5FE6159B1AE6281B48C2
+```powershell
+npm.cmd test
+npm.cmd run test:desktop
+npm.cmd run dist:win
+npm.cmd run test:packaged
+npm.cmd run verify:distribution
 ```
 
-As imagens foram copiadas das entradas originais do PPTX e mantidas sem transformação. A mudança de posicionamento ocorreu no layout do aplicativo, com áreas separadas para roleta e personagens.
+Os testes desktop salvam resultados e capturas em `test-results/desktop/` e `test-results/packaged/`. Essas pastas são locais e não são versionadas. A conferência da distribuição grava os hashes do instalador e do ZIP em `dist/SHA256SUMS.txt`.
+
+A verificação opcional `npm.cmd run verify:reference` compara o hash do PowerPoint com o original. Ela requer `roleta da adição.pptx` na raiz; esse arquivo não acompanha o repositório.
+
+## Condições dos testes
+
+O Playwright executa o Electron em janela oculta, com perfil vazio e rede emulada offline antes de carregar a atividade. O script usa `--disable-gpu` para permitir a captura da janela oculta. A execução normal do aplicativo mantém a configuração gráfica padrão do Electron.
+
+A verificação da seta consulta a geometria do SVG, sem usar a função que calcula o setor selecionado. O resultado esperado da conta também é calculado separadamente.
+
+O teste do pacote abre `dist/win-unpacked/Roleta de Operações.exe`. O instalador NSIS foi gerado, mas seu assistente de instalação ainda não foi testado. A distribuição não possui assinatura digital.
+
+## Teste no computador da escola
+
+Ainda falta validar no equipamento de destino:
+
+1. Windows 10 ou 11 x64 e permissão para instalar ou executar o aplicativo com o usuário da escola.
+2. Instalação ou extração do ZIP e primeira abertura com a rede desligada.
+3. Legibilidade no projetor, escala da tela e modo de tela cheia.
+4. Fluidez do giro com o hardware e os drivers gráficos locais.
+
+Os testes automatizados não cobrem as políticas de execução da escola nem o desempenho no projetor. Eventuais bloqueios do executável sem assinatura precisam ser avaliados pela equipe de TI.
