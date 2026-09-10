@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; frame-src 'none'">
+  <title>Roleta de Operações</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./renderer.mjs"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">+<span>×</span></span><span>Roleta de<br><strong>Operações</strong></span></div>
+      <span class="offline-label"><span aria-hidden="true"></span>Aprenda também sem internet</span>
+    </header>
+
+    <main>
+      <section id="menu-screen" aria-labelledby="menu-title">
+        <div class="menu-hero">
+          <div class="hero-copy"><p class="eyebrow">UMA CONTA A CADA VOLTA</p><h1 id="menu-title">Vamos praticar<br>as operações?</h1><p>Escolha uma operação, ajuste os números<br class="wide-only"> e gire a roleta. Qual será a sua conta?</p></div>
+          <div class="school-scene" aria-hidden="true"><img class="scene-teacher" src="./assets/professor.png" alt=""><img class="scene-children" src="./assets/criancas.png" alt=""><span class="scene-caption">Nossa turma da matemática</span></div>
+        </div>
+        <div class="category-heading"><h2>Escolha por onde começar</h2><span>Quatro jeitos de aprender</span></div>
+        <div class="category-grid">
+          <button class="category addition" data-operation="addition"><span class="operation-symbol" aria-hidden="true">+</span><strong>Adição</strong><span>Vamos juntar quantidades</span><span class="category-arrow" aria-hidden="true">↗</span></button>
+          <button class="category subtraction" data-operation="subtraction"><span class="operation-symbol" aria-hidden="true">−</span><strong>Subtração</strong><span>Descubra quanto sobra</span><span class="category-arrow" aria-hidden="true">↗</span></button>
+          <button class="category multiplication" data-operation="multiplication"><span class="operation-symbol" aria-hidden="true">×</span><strong>Multiplicação</strong><span>Conte em grupos iguais</span><span class="category-arrow" aria-hidden="true">↗</span></button>
+          <button class="category division" data-operation="division"><span class="operation-symbol" aria-hidden="true">÷</span><strong>Divisão</strong><span>Compartilhe em partes iguais</span><span class="category-arrow" aria-hidden="true">↗</span></button>
+        </div>
+        <div class="how-to"><p><b>1</b> Escolha a operação</p><p><b>2</b> Gire e resolva a conta</p><p><b>3</b> Confira a resposta</p></div>
+      </section>
+
+      <section id="game-screen" hidden aria-labelledby="operation-title">
+        <div class="game-heading">
+          <button id="back-button" class="button quiet">← Operações</button>
+          <div class="operation-heading"><span id="heading-symbol" aria-hidden="true">+</span><div><h1 id="operation-title">Adição</h1><p id="operation-hint"></p></div></div>
+          <button id="settings-button" class="button outline">Ajustar números</button>
+        </div>
+        <div class="game-layout">
+          <div class="wheel-panel">
+            <div class="wheel-stage">
+              <svg id="wheel" viewBox="0 0 640 640" role="img" aria-label="Roleta de contas" data-rotation="0">
+                <title id="wheel-title">Roleta de contas</title>
+                <circle class="wheel-shadow" cx="320" cy="327" r="276"/>
+                <circle class="wheel-rim" cx="320" cy="320" r="277"/>
+                <g id="rotor"></g>
+                <circle class="wheel-hub" cx="320" cy="320" r="43"/>
+                <text id="hub-symbol" x="320" y="333" text-anchor="middle">+</text>
+                <g id="pointer" aria-label="Seta de seleção à esquerda"><path d="M 6 302 H 40 V 286 L 81 320 L 40 354 V 338 H 6 Z"/></g>
+              </svg>
+            </div>
+            <p id="round-info" class="round-info"></p>
+            <p id="limited-info" class="limited-info" hidden></p>
+          </div>
+          <aside class="activity-sidebar">
+            <div class="challenge-card">
+              <p class="eyebrow">SUA VEZ DE RESOLVER</p>
+              <p id="spin-status" role="status" aria-live="polite">Gire para escolher uma conta.</p>
+              <div id="selected-problem" class="selected-problem" aria-live="polite" aria-atomic="true"><span id="expression">?</span><span id="equals" hidden>=</span><span id="answer" hidden></span></div>
+              <p id="answer-hint">Pense na resposta antes de conferir.</p>
+              <button id="answer-button" class="button answer-button" disabled>Mostrar resposta</button>
+            </div>
+            <button id="spin-button" class="button primary spin-button"><span aria-hidden="true">↻</span><span id="spin-label">Girar</span></button>
+            <button id="new-round-button" class="button outline">Novas contas</button>
+            <div class="settings-summary"><span>NÚMEROS DESTA RODADA</span><strong id="settings-summary"></strong><small id="math-rule"></small></div>
+            <div class="classroom-cast" aria-hidden="true"><img class="cast-teacher" src="./assets/professor.png" alt=""><img class="cast-students" src="./assets/estudantes.png" alt=""></div>
+          </aside>
+        </div>
+      </section>
+    </main>
+    <footer><span>Aprender fica melhor quando a turma participa.</span><span>Tela cheia <kbd>F11</kbd></span></footer>
+  </div>
+
+  <dialog id="settings-dialog" aria-labelledby="settings-title">
+    <form id="settings-form" novalidate>
+      <div class="dialog-heading"><div><p class="eyebrow" id="settings-operation">ADIÇÃO</p><h2 id="settings-title">Números da rodada</h2></div><button type="button" id="close-settings" class="close-button" aria-label="Fechar configurações">×</button></div>
+      <p class="dialog-intro">Escolha os intervalos. Para usar um número fixo, coloque o mesmo valor no mínimo e no máximo.</p>
+      <fieldset><legend id="a-legend">Primeira parcela</legend><div class="range-fields"><label for="a-min">Mínimo<input id="a-min" name="aMin" type="number" min="0" max="1000" step="1" required></label><span>até</span><label for="a-max">Máximo<input id="a-max" name="aMax" type="number" min="0" max="1000" step="1" required></label></div></fieldset>
+      <fieldset><legend id="b-legend">Segunda parcela</legend><div class="range-fields"><label for="b-min">Mínimo<input id="b-min" name="bMin" type="number" min="0" max="1000" step="1" required></label><span>até</span><label for="b-max">Máximo<input id="b-max" name="bMax" type="number" min="0" max="1000" step="1" required></label></div></fieldset>
+      <p class="settings-note" id="settings-rule">Use números inteiros de 0 a 1.000.</p>
+      <p id="settings-error" class="error" role="alert" hidden></p>
+      <div class="dialog-actions"><button type="button" id="cancel-settings" class="button quiet">Cancelar</button><button type="submit" class="button primary">Aplicar e renovar</button></div>
+    </form>
+  </dialog>
+</body>
+</html>
