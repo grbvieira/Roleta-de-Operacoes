@@ -1,0 +1,68 @@
+ROLETA DE OPERAÇÕES — versão 1.0.0
+
+Aplicativo independente para Windows 10 ou Windows 11, em computadores x64
+(Intel/AMD de 64 bits). Não suporta Windows 7, 8, 8.1 ou Windows de 32 bits.
+
+COMO ABRIR
+
+Opção 1: execute o arquivo Instalador.exe e siga as instruções. A instalação
+é por usuário, sem exigir instalação de Node.js ou PowerPoint. Depois, abra
+"Roleta de Operações" pelo atalho criado na área de trabalho ou no menu Iniciar.
+
+Opção 2: extraia TODO o ZIP para uma pasta no computador e abra
+"Roleta de Operações.exe". Mantenha os arquivos e subpastas juntos.
+Não execute diretamente de dentro do ZIP nem copie apenas o EXE.
+
+O aplicativo funciona sem internet desde a primeira abertura. Chromium,
+Node.js e todos os recursos visuais já acompanham a distribuição. Não exige
+navegador externo, PowerPoint, conta no ChatGPT, login ou downloads iniciais.
+
+COMO USAR
+
+1. Escolha Adição, Subtração, Multiplicação ou Divisão.
+2. Em "Ajustar números", configure os mínimos e máximos (0 a 1.000).
+   Para fixar um número, use o mesmo valor no mínimo e no máximo.
+3. Clique em "Girar" uma vez. A roleta desacelera e para sozinha.
+4. Resolva a conta apontada pela seta. Clique em "Mostrar resposta" para conferir.
+5. Use "Novas contas" ou volte ao menu e entre novamente para renovar a rodada.
+6. F11 alterna tela cheia. Esc sai da tela cheia.
+
+São até dez contas diferentes por rodada. Se houver menos possibilidades,
+todos os pares válidos aparecem e a tela explica a limitação. Com apenas uma
+combinação, é preciso ampliar os intervalos para obter uma conta diferente.
+As subtrações não têm resultados negativos. As divisões são exatas e o divisor
+deve ser maior que zero. O resultado zero é permitido.
+
+As configurações ficam salvas para o usuário do Windows. A atividade também
+funciona durante a sessão se o armazenamento local não estiver disponível.
+
+PRIMEIRA DISTRIBUIÇÃO
+
+Esta versão não tem assinatura digital. O Windows ou o antivírus da escola
+pode solicitar aprovação da equipe de TI conforme as políticas locais.
+Não é necessário desativar as proteções do computador.
+
+Ainda é necessário validar a execução no computador da escola: versão e
+arquitetura do Windows, políticas de execução, desempenho e legibilidade no
+projetor, especialmente com escala de tela diferente de 100%.
+
+DESENVOLVIMENTO
+
+Na pasta do código-fonte, com Node.js e npm instalados:
+  npm.cmd ci
+  npm.cmd start
+
+Testes:
+  npm.cmd test
+  npm.cmd run test:desktop
+  npm.cmd run verify:reference
+
+Gerar instalador e ZIP para Windows x64:
+  npm.cmd run dist:win
+
+Validar o executável gerado:
+  npm.cmd run test:packaged
+
+Os arquivos de distribuição ficam em dist. Apenas o computador usado para
+instalar dependências e gerar o pacote precisa de internet para os downloads
+das ferramentas. A escola recebe o pacote completo pronto para uso offline.
