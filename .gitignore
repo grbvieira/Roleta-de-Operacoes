@@ -1,5 +1,25 @@
+# Dependências e caches de desenvolvimento
 node_modules/
 .cache/
+
+# Distribuições e resultados de testes
 dist/
 test-results/
+playwright-report/
+blob-report/
+coverage/
+.nyc_output/
+
+# Logs e configurações locais
 *.log
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Arquivos temporários do sistema e do PowerPoint
+.DS_Store
+Thumbs.db
+Desktop.ini
+desktop.ini
+~$*.pptx
