@@ -1,0 +1,52 @@
+{
+  "name": "roleta-de-operacoes",
+  "version": "1.0.0",
+  "description": "Roleta educativa das quatro operações, para Windows e totalmente offline.",
+  "author": "Projeto Roleta de Operações",
+  "private": true,
+  "type": "module",
+  "main": "desktop/main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test tests/*.test.mjs",
+    "test:desktop": "node scripts/test-desktop.mjs",
+    "test:packaged": "node scripts/test-desktop.mjs --packaged",
+    "verify:reference": "node scripts/verify-reference.mjs",
+    "verify:distribution": "node scripts/verify-distribution.mjs",
+    "dist:win": "node scripts/package-windows.cjs",
+    "pack:win": "node scripts/package-windows.cjs --dir"
+  },
+  "engines": { "node": ">=22.12.0" },
+  "devDependencies": {
+    "electron": "44.3.0",
+    "electron-builder": "26.15.3",
+    "playwright": "1.63.0"
+  },
+  "build": {
+    "appId": "br.escola.roletaoperacoes",
+    "productName": "Roleta de Operações",
+    "asar": true,
+    "directories": { "output": "dist" },
+    "files": ["desktop/**/*", "app/**/*", "package.json"],
+    "extraFiles": [{ "from": "LEIA-ME.txt", "to": "LEIA-ME.txt" }],
+    "win": {
+      "target": [{ "target": "nsis", "arch": ["x64"] }, { "target": "zip", "arch": ["x64"] }],
+      "artifactName": "Roleta-Operacoes-${version}-Windows-${arch}.${ext}",
+      "icon": "app/assets/app.ico",
+      "signExecutable": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowElevation": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Roleta de Operações",
+      "runAfterFinish": false,
+      "artifactName": "Roleta-Operacoes-${version}-Windows-${arch}-Instalador.${ext}",
+      "installerLanguages": ["pt_BR"],
+      "language": "1046"
+    }
+  }
+}
