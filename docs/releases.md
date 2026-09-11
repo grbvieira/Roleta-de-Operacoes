@@ -56,7 +56,7 @@ Na aba **Actions**, confirme que os dois jobs terminaram com sucesso. Na página
 Get-FileHash -Algorithm SHA256 -LiteralPath .\Roleta-Operacoes-1.0.1-Windows-x64-Instalador.exe
 ```
 
-A execução completa no serviço do GitHub só será verificada quando uma tag for enviada. Os testes da publicação feitos localmente simulam a API e não criam Releases.
+A primeira execução completa foi aprovada para a tag `v1.0.0`: [execução do Actions](https://github.com/grbvieira/Roleta-de-Operacoes/actions/runs/34555907287) e [Release publicada](https://github.com/grbvieira/Roleta-de-Operacoes/releases/tag/v1.0.0). Os testes da publicação feitos localmente continuam usando uma API simulada, sem criar Releases.
 
 O instalador continua sem assinatura digital. O Actions não valida o assistente de instalação nem o hardware da escola. A primeira abertura desconectada, as permissões do usuário e a leitura no projetor seguem o [roteiro de validação](validacao.md).
 

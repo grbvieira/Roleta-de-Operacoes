@@ -62,4 +62,4 @@ A configuração do Actions acrescentou nove testes, totalizando 27 testes unit�
 
 Os testes de publicação usam uma API simulada e não criam Releases. O workflow passou no actionlint 1.7.12. A distribuição foi gerada novamente, conferida e aprovada no teste do executável com rede emulada offline.
 
-A execução completa no runner do GitHub e o upload real ainda dependem do envio de uma tag. O [procedimento de lançamento](releases.md) descreve essa etapa e as reexecuções.
+A [execução da tag v1.0.0](https://github.com/grbvieira/Roleta-de-Operacoes/actions/runs/34555907287) terminou com sucesso nos dois jobs: testes e empacotamento no runner Windows, seguidos do upload e da publicação do instalador na [Release v1.0.0](https://github.com/grbvieira/Roleta-de-Operacoes/releases/tag/v1.0.0). O [procedimento de lançamento](releases.md) descreve as próximas versões e as reexecuções.
