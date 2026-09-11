@@ -18,6 +18,20 @@ Você pode baixar o arquivo em outro computador e levá-lo à escola por pendriv
 
 As notas da versão e o SHA-256 do instalador estão na [Release v1.0.0](https://github.com/grbvieira/Roleta-de-Operacoes/releases/tag/v1.0.0). Para consultar outras versões, acesse [Releases](https://github.com/grbvieira/Roleta-de-Operacoes/releases).
 
+## Telas do aplicativo
+
+| Menu inicial | Adição |
+| --- | --- |
+| ![Menu com as quatro operações](docs/imagens/menu-inicial.png) | ![Roleta de adição antes do giro](docs/imagens/adicao.png) |
+
+| Resposta revelada | Subtração |
+| --- | --- |
+| ![Conta 1 + 5 selecionada pela seta e resposta 6 revelada](docs/imagens/resposta-revelada.png) | ![Roleta de subtração sem resultados negativos](docs/imagens/subtracao.png) |
+
+| Multiplicação | Divisão |
+| --- | --- |
+| ![Roleta de multiplicação com dez contas](docs/imagens/multiplicacao.png) | ![Roleta de divisão com contas exatas](docs/imagens/divisao.png) |
+
 ## Como usar
 
 1. Escolha uma das quatro operações.
