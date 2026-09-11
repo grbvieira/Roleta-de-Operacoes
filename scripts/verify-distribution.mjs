@@ -11,7 +11,7 @@ const archive = path.join(root, 'dist', 'win-unpacked', 'resources', 'app.asar')
 const files = listPackage(archive).map(file => file.replaceAll('\\', '/'));
 assert.ok(files.every(file => !/\.pptx$|\/tests\/|\/node_modules\//i.test(file)), 'o pacote não deve incluir PowerPoint, testes ou ferramentas de desenvolvimento');
 const sources = [
-  'desktop/main.cjs', 'app/index.html', 'app/styles.css', 'app/renderer.mjs',
+  'desktop/main.cjs', 'desktop/preload.cjs', 'app/index.html', 'app/styles.css', 'app/renderer.mjs', 'app/help.mjs',
   'app/core/math.mjs', 'app/core/wheel.mjs', 'app/assets/escola.jpg',
   'app/assets/professor.png', 'app/assets/criancas.png', 'app/assets/estudantes.png',
   'app/assets/app.ico', 'app/assets/app-icon.svg'

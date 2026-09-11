@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdir, mkdtemp, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { checkHelpInterface, checkHelpKeepsActivity } from './test-help.mjs';
 
 const root = path.resolve(fileURLToPath(new URL('..', import.meta.url)));
 const packaged = process.argv.includes('--packaged');
@@ -32,7 +33,7 @@ async function launch() {
     window.setContentSize(1280, 960);
   });
   page.on('pageerror', error => errors.push(error.message));
-  page.on('request', request => { if (/^https?:/.test(request.url())) externalRequests.push(request.url()); });
+  page.on('request', request => { if (/^(https?|wss?):/.test(request.url())) externalRequests.push(request.url()); });
   await page.waitForFunction(() => document.querySelectorAll('.category').length === 4);
   await page.waitForFunction(() => Array.from(document.images).every(image => image.complete && image.naturalWidth > 0));
   await page.waitForFunction(() => document.readyState === 'complete');
@@ -55,7 +56,7 @@ async function enter(operation) { await page.locator(`button[data-operation="${o
 async function checkSpin() {
   await page.locator('#spin-button').click();
   assert.equal(await page.locator('#answer').isVisible(), false);
-  for (const id of ['spin-button', 'answer-button', 'settings-button', 'new-round-button', 'back-button']) {
+  for (const id of ['spin-button', 'answer-button', 'settings-button', 'new-round-button', 'back-button', 'help-button']) {
     assert.equal(await page.locator(`#${id}`).isDisabled(), true);
   }
   await page.waitForFunction(() => document.querySelector('#wheel').hasAttribute('data-selected-index'), undefined, { timeout: 10000 });
@@ -84,9 +85,11 @@ async function checkSpin() {
   const [operation, aValue, bValue] = result.id.split(':');
   const a = Number(aValue), b = Number(bValue);
   const expected = operation === 'addition' ? a + b : operation === 'subtraction' ? a - b : operation === 'multiplication' ? a * b : a / b;
+  await checkHelpKeepsActivity(page); // Keep the selected answer hidden.
   await page.locator('#answer-button').click();
   assert.equal(await page.locator('#answer').textContent(), String(expected));
   assert.equal(await page.locator('#answer').isVisible(), true);
+  await checkHelpKeepsActivity(page); // Keep an already revealed answer visible.
   checks.push(`Seta, conta e resposta: ${result.expression} = ${expected}`);
   console.log(checks.at(-1));
 }
@@ -105,12 +108,15 @@ try {
   assert.equal(await page.evaluate(() => navigator.onLine), false, 'primeira abertura com rede emulada offline');
   await capture('01-menu.png');
   checks.push('Primeira abertura com perfil vazio e rede emulada offline; imagens locais carregadas.');
+  await checkHelpInterface({ page, desktop, capture });
+  checks.push('Ajuda offline: três seções, versão real, cópia fixa via IPC, teclado, foco, rolagem e Escape prioritário.');
 
   for (const operation of ['addition', 'subtraction', 'multiplication', 'division']) {
     await enter(operation);
     const first = await ids();
     assert.equal(first.length, 10);
     assert.equal(new Set(first).size, 10);
+    await checkHelpKeepsActivity(page);
     await checkSpin();
     if (operation === 'addition') {
       await capture('02-roleta-resposta.png');
@@ -174,6 +180,13 @@ try {
   console.log(checks.join('\n'));
   console.log(`Teste desktop ${packaged ? 'empacotado' : 'em desenvolvimento'} aprovado.`);
 } catch (error) {
+  if (desktop && page && !page.isClosed()) {
+    console.error('Estado da janela:', await desktop.evaluate(({ BrowserWindow }) => {
+      const window = BrowserWindow.getAllWindows()[0];
+      return { fullscreen: window.isFullScreen(), maximized: window.isMaximized(), content: window.getContentBounds() };
+    }).catch(() => null));
+    console.error('Viewport:', await page.evaluate(() => ({ width: innerWidth, height: innerHeight })).catch(() => null));
+  }
   if (page && !page.isClosed()) await capture('falha.png').catch(() => {});
   console.error(error);
   process.exitCode = 1;
