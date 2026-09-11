@@ -21,7 +21,8 @@ COMO USAR
 5. Clique em "Mostrar resposta" para conferir.
 6. Use "Novas contas" ou volte ao menu para trocar de operação.
 
-F11 alterna a tela cheia. Esc sai da tela cheia.
+F11 alterna a tela cheia. Escape fecha primeiro a ajuda ou os ajustes;
+sem diálogo aberto, sai da tela cheia.
 
 São até dez contas diferentes por rodada. Se os intervalos permitirem
 menos combinações, a roleta terá menos setores. Para obter outras contas,
@@ -31,6 +32,30 @@ As subtrações não têm resultados negativos. As divisões são exatas,
 com divisor maior que zero. O resultado zero é permitido.
 
 As configurações são salvas por operação para o usuário do Windows.
+
+AJUDA E INFORMAÇÕES
+
+O botão no rodapé do menu e da atividade abre "Como usar", "Sobre" e
+"Privacidade". Os textos estão disponíveis sem internet.
+
+Use Tab para navegar pelos controles. Nas seções, use as setas para a
+esquerda e a direita, Home ou End. O conteúdo pode ser rolado. Feche pelo
+botão "Fechar ajuda" ou por Escape; o foco volta ao botão que abriu a ajuda.
+Abrir a ajuda não muda a rodada nem a resposta. Durante o giro, o botão
+fica temporariamente desabilitado.
+
+Em "Sobre", consulte a versão do aplicativo e use "Copiar e-mail" para
+copiar gersonrbvieira@gmail.com. O contato é opcional: escreva e envie sua
+mensagem em um aplicativo de e-mail configurado, com conexão à internet.
+A roleta não envia mensagens nem anexa dados automaticamente.
+
+Desenvolvido por Gerson Vieira
+Engenheiro de Software e criador de produtos digitais
+
+Ideia original e titularidade do material pedagógico original:
+Professor Arnaldo Macedo Vieira.
+Esse crédito se refere ao material pedagógico, sem comprovar a autoria
+ou a licença de todas as imagens incorporadas.
 
 ANTES DA PRIMEIRA AULA
 

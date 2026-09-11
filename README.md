@@ -42,7 +42,21 @@ As notas da versão e o SHA-256 do instalador estão na [Release v1.0.0](https:/
 
 A roleta tem até dez contas diferentes. As subtrações têm resultado não negativo e as divisões são exatas, sem divisor zero. As configurações ficam salvas por operação.
 
-**F11** alterna a tela cheia; **Esc** sai desse modo. O [LEIA-ME.txt](LEIA-ME.txt) acompanha o aplicativo com as instruções para a escola.
+**F11** alterna a tela cheia. **Escape** fecha primeiro a ajuda ou os ajustes; sem diálogo aberto, sai da tela cheia. O [LEIA-ME.txt](LEIA-ME.txt) acompanha o aplicativo com as instruções para a escola.
+
+## Ajuda e informações
+
+O botão **Ajuda e informações**, no rodapé do menu e da atividade, abre três seções:
+
+- **Como usar:** guia para conduzir a atividade, ajustar os números e usar os atalhos.
+- **Sobre:** versão obtida do próprio aplicativo, autoria, crédito pedagógico e contato com o botão **Copiar e-mail**.
+- **Privacidade:** o que fica salvo no computador e como funciona o contato opcional.
+
+A ajuda funciona offline. Use **Tab** para percorrer os controles e as setas, **Home** ou **End** para trocar de seção. Ao fechar, o foco volta ao botão de ajuda. Abrir a janela preserva a rodada, a seleção e a resposta; durante o giro, o botão fica temporariamente desabilitado.
+
+Os intervalos são armazenados por operação no perfil local do usuário. O aplicativo não tem cadastro, campos para dados de alunos, histórico salvo de respostas ou telemetria. Para entrar em contato, copie `gersonrbvieira@gmail.com` e use seu aplicativo de e-mail; o envio depende desse aplicativo e de internet.
+
+Esta área está disponível no código atual e nas distribuições geradas a partir dele. O instalador da Release **v1.0.0**, publicado anteriormente, ainda não inclui essa alteração.
 
 ## Compatibilidade
 

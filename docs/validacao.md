@@ -63,3 +63,22 @@ A configuração do Actions acrescentou nove testes, totalizando 27 testes unit�
 Os testes de publicação usam uma API simulada e não criam Releases. O workflow passou no actionlint 1.7.12. A distribuição foi gerada novamente, conferida e aprovada no teste do executável com rede emulada offline.
 
 A [execução da tag v1.0.0](https://github.com/grbvieira/Roleta-de-Operacoes/actions/runs/34555907287) terminou com sucesso nos dois jobs: testes e empacotamento no runner Windows, seguidos do upload e da publicação do instalador na [Release v1.0.0](https://github.com/grbvieira/Roleta-de-Operacoes/releases/tag/v1.0.0). O [procedimento de lançamento](releases.md) descreve as próximas versões e as reexecuções.
+
+## Ajuda e informações — verificação local em 11/09/2026
+
+A nova área foi verificada em desenvolvimento e no executável empacotado, com perfil novo e rede emulada offline. Os 27 testes unitários também passaram.
+
+- Botão no menu e na atividade; acesso às três seções e versão correspondente a `app.getVersion()`.
+- Navegação com Tab, Shift+Tab, setas, Home e End; foco visível e contido no diálogo; retorno ao botão de ajuda ao fechar.
+- Conteúdo rolável por teclado e botão de fechar acessível em 960 × 680.
+- F11 com entrada nativa do Electron; Escape fecha primeiro a ajuda ou os ajustes, sem sair da tela cheia no mesmo acionamento, inclusive ao manter a tecla pressionada.
+- Diálogos de ajuda e configurações não se sobrepõem; ajuda desabilitada durante o giro.
+- Contas, seleção, resposta oculta ou revelada e configurações preservadas ao abrir e fechar a ajuda nas quatro operações.
+- Cópia do endereço fixo pelo preload/IPC, com confirmação acessível e mensagem de erro quando a cópia falha.
+- Renderer sem Node.js, com sandbox e isolamento de contexto; nenhuma requisição externa nem erro JavaScript registrado nos fluxos concluídos.
+
+O teste de cópia substitui temporariamente `clipboard.writeText` no processo de teste para conferir o endereço recebido sem sobrescrever a área de transferência do usuário. Não abre um aplicativo de e-mail nem envia mensagens.
+
+As capturas das três seções foram inspecionadas. A verificação da distribuição confere também `desktop/preload.cjs`, `app/help.mjs` e o `LEIA-ME.txt`. O `app.asar` dentro do ZIP foi comparado com o da pasta testada e é idêntico. O PowerPoint local mantém seu hash original.
+
+Esses resultados se referem ao código e ao pacote local atualizados. A Release v1.0.0 publicada anteriormente não foi alterada e ainda não contém a ajuda. A instalação e o teste no equipamento da escola permanecem pendentes.

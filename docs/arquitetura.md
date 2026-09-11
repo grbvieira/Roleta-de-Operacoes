@@ -7,9 +7,11 @@ A Roleta de Operações usa HTML, CSS e JavaScript em uma janela Electron. O ele
 | Arquivo | Função |
 | --- | --- |
 | `desktop/main.cjs` | Cria a janela e serve os arquivos locais pelo protocolo `roleta://app` |
+| `desktop/preload.cjs` | Expõe somente versão, cópia do e-mail fixo e saída da tela cheia |
 | `app/core/math.mjs` | Valida intervalos, gera contas e renova as rodadas |
 | `app/core/wheel.mjs` | Calcula os ângulos, a desaceleração e o setor apontado |
 | `app/renderer.mjs` | Controla a atividade e desenha a roleta em SVG |
+| `app/help.mjs` | Controla as seções da ajuda, o foco e a prioridade do Escape |
 | `app/styles.css` | Define o layout e reserva espaço para os personagens |
 | `scripts/` | Reúne o empacotamento e as verificações do aplicativo |
 | `tests/` | Testa a matemática e a geometria sem abrir a interface |
@@ -44,6 +46,12 @@ Durante o giro, os controles que alteram a rodada ficam desabilitados. **Mostrar
 O protocolo `roleta://app` lê os arquivos do aplicativo sem abrir servidor HTTP. A janela usa sandbox, isolamento de contexto e acesso ao Node.js desabilitado na interface. Requisições externas e novas janelas são bloqueadas.
 
 As configurações de cada operação ficam no armazenamento local do perfil do usuário. Se esse armazenamento falhar, a atividade continua disponível durante a sessão.
+
+A ajuda usa um diálogo modal nativo e abas com navegação por teclado. O Escape fecha o diálogo antes de solicitar a saída da tela cheia; eventos de repetição da tecla são ignorados. A ajuda não acessa nem altera o estado matemático da rodada.
+
+O preload mantém três funções específicas, sem expor `ipcRenderer`, Node.js ou abertura de URLs. O processo principal valida a janela, o frame principal e a origem `roleta://app/index.html` em cada chamada. A versão vem de `app.getVersion()`. A cópia escreve somente o endereço fixo `gersonrbvieira@gmail.com` na área de transferência. O envio de e-mail é feito manualmente pelo usuário em outro aplicativo.
+
+O texto de privacidade corresponde ao armazenamento `roleta-settings-v1`: mínimos e máximos dos dois operandos, por operação. Rodadas e seleções ficam na memória. Não há cadastro, dados de alunos, histórico persistente de respostas ou rotina de telemetria no código; os arquivos técnicos do Electron também permanecem no perfil local.
 
 O pacote inclui o Electron e as imagens. `LEIA-ME.txt` acompanha a distribuição como guia de uso; o PowerPoint, os testes e as ferramentas de desenvolvimento ficam fora dela. As versões das dependências estão fixadas em `package.json` e `package-lock.json`.
 
