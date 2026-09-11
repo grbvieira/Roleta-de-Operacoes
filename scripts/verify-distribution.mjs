@@ -9,12 +9,13 @@ const root = path.resolve('.');
 const sourceMetadata = JSON.parse(await readFile(path.join(root, 'package.json'), 'utf8'));
 const archive = path.join(root, 'dist', 'win-unpacked', 'resources', 'app.asar');
 const files = listPackage(archive).map(file => file.replaceAll('\\', '/'));
-assert.ok(files.every(file => !/\.pptx$|\/tests\/|\/node_modules\//i.test(file)), 'o pacote não deve incluir PowerPoint, testes ou ferramentas de desenvolvimento');
+assert.ok(files.every(file => !/\.pptx$|\/(?:tests|scripts|docs|\.cache|test-results|node_modules)\//i.test(file)), 'o pacote não deve incluir PowerPoint, referências, testes ou ferramentas de desenvolvimento');
+assert.ok(files.every(file => !/\/(?:criancas\.png|escola\.jpg|estudantes\.png|professor\.png)$/.test(file)), 'imagens antigas não devem integrar o pacote');
 const sources = [
   'desktop/main.cjs', 'desktop/preload.cjs', 'app/index.html', 'app/styles.css', 'app/renderer.mjs', 'app/help.mjs',
-  'app/core/math.mjs', 'app/core/wheel.mjs', 'app/assets/escola.jpg',
-  'app/assets/professor.png', 'app/assets/criancas.png', 'app/assets/estudantes.png',
-  'app/assets/app.ico', 'app/assets/app-icon.svg'
+  'app/core/math.mjs', 'app/core/wheel.mjs', 'app/assets/cenario-escola.png',
+  'app/assets/professor-arnaldo.png', 'app/assets/estudantes-sala.png', 'app/assets/estudantes-roleta.png',
+  'app/assets/app.ico', 'app/assets/app-icon.svg', 'app/assets/ORIGEM.md'
 ];
 for (const file of sources) {
   assert.deepEqual(extractFile(archive, path.normalize(file)), await readFile(path.join(root, file)), `versão empacotada desatualizada: ${file}`);
@@ -24,6 +25,15 @@ assert.equal(metadata.main, 'desktop/main.cjs');
 assert.equal(metadata.version, sourceMetadata.version, 'versão empacotada desatualizada');
 assert.deepEqual(await readFile(path.join(root, 'dist', 'win-unpacked', 'LEIA-ME.txt')),
   await readFile(path.join(root, 'LEIA-ME.txt')), 'guia de uso empacotado desatualizado');
+for (const [source, target] of [
+  ['AVISOS-TERCEIROS.txt', 'AVISOS-TERCEIROS.txt'],
+  ['licenses/NSIS-COPYING.txt', 'LICENSES.nsis.txt'],
+  ['node_modules/electron/dist/LICENSE', 'LICENSE.electron.txt'],
+  ['node_modules/electron/dist/LICENSES.chromium.html', 'LICENSES.chromium.html']
+]) {
+  assert.deepEqual(await readFile(path.join(root, 'dist', 'win-unpacked', target)),
+    await readFile(path.join(root, source)), `aviso de terceiros ausente ou alterado: ${target}`);
+}
 const { installer, zip } = distributionNames(sourceMetadata.version);
 const names = [installer, zip];
 const checksums = [];

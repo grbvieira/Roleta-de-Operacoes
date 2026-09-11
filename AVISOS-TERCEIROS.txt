@@ -1,0 +1,66 @@
+ROLETA DE OPERAÇÕES — COMPONENTES E RECURSOS
+
+Este documento descreve os componentes distribuídos. Ele não define uma
+licença para o código do projeto nem para suas imagens.
+
+RUNTIME INCLUÍDO
+
+O aplicativo inclui o runtime oficial do Electron. A versão usada nesta
+configuração é Electron 44.3.0, para Windows x64. Os avisos originais são
+preservados junto ao executável:
+
+  LICENSE.electron.txt — licença MIT e avisos do Electron.
+  LICENSES.chromium.html — textos e avisos dos componentes do runtime.
+
+O segundo arquivo inclui, entre outros, os avisos de Chromium, Node.js,
+V8, ICU, FFmpeg, SwiftShader e componentes Vulkan. Há licenças diferentes
+nesse conjunto; a licença MIT do Electron não substitui esses textos.
+O bloco de FFmpeg contém também o texto da GNU LGPL.
+
+Os arquivos podem ser lidos offline. O HTML de licenças contém links de
+referência a sites dos componentes; consultar esses sites exige internet.
+Os textos das licenças acompanham o próprio arquivo.
+
+Código-fonte e referências do runtime:
+https://github.com/electron/electron/tree/v44.3.0
+https://github.com/electron/electron/releases/tag/v44.3.0
+As revisões de suas dependências são referenciadas pelo projeto Electron.
+
+APLICATIVO E FERRAMENTAS
+
+Não há dependências npm de produção declaradas pelo aplicativo. Seu código,
+HTML, CSS, imagens e ícone ficam em resources/app.asar. O runtime possui
+componentes nativos além desse arquivo, incluindo bibliotecas, dados ICU,
+locales e recursos do Chromium; mantenha a pasta distribuída completa.
+
+electron-builder, Playwright e suas dependências são usados no desenvolvimento
+e nos testes e não são instalados como pacotes npm no aplicativo final.
+O instalador é gerado pelo NSIS. Os recursos de runtime e seus avisos
+acompanham tanto a instalação quanto o ZIP.
+O arquivo LICENSES.nsis.txt reproduz o COPYING do NSIS 3.0.4.1 fornecido
+pelo empacotador, com os avisos do NSIS e seus módulos de compressão.
+Fontes do NSIS utilizado: https://github.com/electron-userland/electron-builder-binaries/releases/tag/nsis-3.0.4.1
+
+As famílias Segoe UI e Arial são solicitadas ao sistema operacional, com
+alternativa sans-serif. Não são distribuídos arquivos de fontes. Não há
+arquivos de música ou efeitos sonoros no aplicativo. A presença de FFmpeg
+no runtime não significa que a atividade inclua faixas de áudio.
+
+RECURSOS VISUAIS E CRÉDITOS
+
+O responsável informou que gerou novas imagens com inteligência artificial.
+Não informou ferramenta, prompts, datas ou termos de uso. A procedência
+completa do avatar professor-arnaldo.png permanece pendente. Representar o
+professor não comprova a titularidade dos direitos sobre a ilustração.
+
+O ícone é uma composição vetorial dos símbolos + e ×. As imagens não foram
+classificadas como domínio público, exclusivas ou livres de direitos.
+
+Ideia original e titularidade do material pedagógico original:
+Professor Arnaldo Macedo Vieira.
+Esse crédito pedagógico não é uma licença das imagens incorporadas.
+
+Uma licença para o código do projeto ainda será definida pelo responsável.
+Os avisos de terceiros não se estendem automaticamente ao projeto.
+
+Suporte: gersonrbvieira@gmail.com

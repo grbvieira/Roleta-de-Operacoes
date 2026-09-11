@@ -3,6 +3,14 @@ ROLETA DE OPERAÇÕES
 Para Windows 10 e 11 x64 (Intel/AMD de 64 bits).
 Funciona sem internet e não exige instalação de programas adicionais.
 
+DOWNLOAD E SUPORTE
+
+Versão publicada mais recente:
+https://github.com/grbvieira/Roleta-de-Operacoes/releases/latest
+Na seção Assets, baixe o arquivo terminado em Windows-x64-Instalador.exe.
+Você pode copiá-lo por pendrive para instalar em um computador sem internet.
+Dúvidas e sugestões: gersonrbvieira@gmail.com
+
 COMO ABRIR
 
 Com o instalador: execute o arquivo terminado em "Instalador.exe" e siga
@@ -36,7 +44,8 @@ As configurações são salvas por operação para o usuário do Windows.
 AJUDA E INFORMAÇÕES
 
 O botão no rodapé do menu e da atividade abre "Como usar", "Sobre" e
-"Privacidade". Os textos estão disponíveis sem internet.
+"Privacidade", além de "Créditos e licenças". Os textos estão disponíveis
+sem internet. A interface usa cenário, professor e estudantes separados.
 
 Use Tab para navegar pelos controles. Nas seções, use as setas para a
 esquerda e a direita, Home ou End. O conteúdo pode ser rolado. Feche pelo
@@ -56,6 +65,11 @@ Ideia original e titularidade do material pedagógico original:
 Professor Arnaldo Macedo Vieira.
 Esse crédito se refere ao material pedagógico, sem comprovar a autoria
 ou a licença de todas as imagens incorporadas.
+
+Os avisos de terceiros estão na pasta do aplicativo, junto ao executável:
+AVISOS-TERCEIROS.txt, LICENSE.electron.txt, LICENSES.chromium.html e
+LICENSES.nsis.txt. A procedência completa do avatar e os termos das imagens
+ainda dependem de confirmação. A licença do código não foi definida.
 
 ANTES DA PRIMEIRA AULA
 

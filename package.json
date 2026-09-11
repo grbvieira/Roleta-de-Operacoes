@@ -29,7 +29,11 @@
     "asar": true,
     "directories": { "output": "dist" },
     "files": ["desktop/**/*", "app/**/*", "package.json"],
-    "extraFiles": [{ "from": "LEIA-ME.txt", "to": "LEIA-ME.txt" }],
+    "extraFiles": [
+      { "from": "LEIA-ME.txt", "to": "LEIA-ME.txt" },
+      { "from": "AVISOS-TERCEIROS.txt", "to": "AVISOS-TERCEIROS.txt" },
+      { "from": "licenses/NSIS-COPYING.txt", "to": "LICENSES.nsis.txt" }
+    ],
     "win": {
       "target": [{ "target": "nsis", "arch": ["x64"] }, { "target": "zip", "arch": ["x64"] }],
       "artifactName": "Roleta-Operacoes-${version}-Windows-${arch}.${ext}",
