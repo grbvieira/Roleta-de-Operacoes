@@ -1,4 +1,4 @@
-ROLETA DE OPERAÇÕES — versão 1.0.0
+ROLETA DE OPERAÇÕES
 
 Para Windows 10 e 11 x64 (Intel/AMD de 64 bits).
 Funciona sem internet e não exige instalação de programas adicionais.

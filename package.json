@@ -12,6 +12,7 @@
     "test:desktop": "node scripts/test-desktop.mjs",
     "test:packaged": "node scripts/test-desktop.mjs --packaged",
     "verify:reference": "node scripts/verify-reference.mjs",
+    "verify:release": "node scripts/release-config.cjs",
     "verify:distribution": "node scripts/verify-distribution.mjs",
     "dist:win": "node scripts/package-windows.cjs",
     "pack:win": "node scripts/package-windows.cjs --dir"
