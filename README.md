@@ -77,12 +77,19 @@ O empacotamento pode baixar ferramentas ainda ausentes do cache. Depois de gerad
 
 `test:packaged` testa o executável em `dist/win-unpacked/`. `verify:distribution` confere o código e as imagens empacotados e grava os hashes do instalador e do ZIP.
 
-Os pacotes ficam fora do Git e não são publicados automaticamente em Releases. O ZIP do botão **Code** do GitHub contém o código-fonte, não o aplicativo pronto.
+Os pacotes ficam fora do Git. O comando local de empacotamento não publica nada; o GitHub Actions publica o instalador em [Releases](https://github.com/grbvieira/Roleta-de-Operacoes/releases) quando uma tag de versão é enviada e todas as verificações passam. O ZIP do botão **Code** contém o código-fonte, não o aplicativo pronto.
+
+## Publicar uma versão
+
+O workflow [Release Windows](.github/workflows/release-windows.yml) é acionado por tags como `v1.0.0`. Ele confere a versão do aplicativo e do lock, executa os testes e gera o instalador em um runner Windows. A Release recebe o instalador, notas automáticas e o SHA-256 do arquivo.
+
+Veja o [procedimento de lançamento](docs/releases.md) para atualizar a versão, enviar a tag e tratar uma execução que falhou. Releases existentes nunca são substituídas automaticamente.
 
 ## Código e documentação
 
 - [Arquitetura](docs/arquitetura.md): módulos, regras das contas e cálculo do giro.
 - [Testes](docs/validacao.md): verificações realizadas e teste pendente na escola.
+- [Lançamentos](docs/releases.md): publicação do instalador pelo GitHub Actions.
 - [Origem das imagens](app/assets/ORIGEM.md): recursos aproveitados da apresentação.
 
 O PowerPoint `roleta da adição.pptx` é uma referência local e está no `.gitignore`. As imagens necessárias já estão em `app/assets/`; o original não é necessário para executar ou empacotar o projeto. Quem tiver o arquivo na raiz pode conferir sua integridade com `npm.cmd run verify:reference`.

@@ -55,3 +55,11 @@ Ainda falta validar no equipamento de destino:
 4. Fluidez do giro com o hardware e os drivers gráficos locais.
 
 Os testes automatizados não cobrem as políticas de execução da escola nem o desempenho no projetor. Eventuais bloqueios do executável sem assinatura precisam ser avaliados pela equipe de TI.
+
+## Automação de Releases
+
+A configuração do Actions acrescentou nove testes, totalizando 27 testes unitários aprovados. Eles verificam a correspondência entre tag, manifesto e lock, os nomes dos pacotes por versão e as condições de publicação: instalador ausente ou alterado, Release existente, tag movida, erros da API e upload incompleto.
+
+Os testes de publicação usam uma API simulada e não criam Releases. O workflow passou no actionlint 1.7.12. A distribuição foi gerada novamente, conferida e aprovada no teste do executável com rede emulada offline.
+
+A execução completa no runner do GitHub e o upload real ainda dependem do envio de uma tag. O [procedimento de lançamento](releases.md) descreve essa etapa e as reexecuções.
