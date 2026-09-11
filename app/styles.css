@@ -10,3 +10,31 @@ dialog{width:min(540px,calc(100vw - 40px));border:1px solid #e4dce9;border-radiu
 @media(max-width:1100px){.app-shell{padding:0 28px}.topbar{height:82px}.menu-hero{gap:25px;padding:32px 0}.school-scene{height:245px}.scene-teacher{height:193px}.hero-copy h1{font-size:44px}.category{padding:19px;min-height:181px}.category strong{font-size:20px}.category-arrow{right:18px}.game-layout{grid-template-columns:minmax(0,1fr) 290px;gap:12px}.game-heading{gap:15px}.operation-heading p{max-width:220px}.activity-sidebar{padding-top:24px}.challenge-card{padding:20px 17px 16px}.selected-problem{font-size:33px;min-height:78px}.classroom-cast{height:97px}.cast-teacher{height:93px;width:82px}.cast-students{height:89px;width:151px}}
 @media(max-height:790px){.topbar{height:76px}.menu-hero{padding:26px 0}.school-scene{height:237px}.scene-teacher{height:190px}.hero-copy h1{font-size:44px}.category{min-height:176px;padding:19px}.operation-symbol{margin-bottom:12px}.how-to{margin:17px 0;gap:32px}.game-heading{padding:17px 0 6px}.game-layout{padding-top:0}.wheel-stage{width:min(100%,calc(100vh - 213px))}.activity-sidebar{padding-top:13px;gap:10px}.challenge-card{padding:17px 17px 14px}.challenge-card .eyebrow{margin-bottom:7px}.selected-problem{min-height:73px;padding:11px 0;font-size:33px}.selected-problem #answer{font-size:34px}.challenge-card #answer-hint{margin-bottom:10px}.spin-button{min-height:52px;font-size:20px}.classroom-cast{height:78px}.cast-teacher{height:77px;width:74px}.cast-students{height:72px;width:130px}.settings-summary{padding-top:5px}footer{min-height:42px}}
 @media(prefers-reduced-motion:reduce){button:not(:disabled){transition:none}}
+
+footer{flex-wrap:wrap;padding:8px 0}
+footer .button{font-size:12px;min-height:40px;padding:9px 14px}
+.help-dialog{width:min(740px,calc(100vw - 40px));height:min(720px,calc(100dvh - 40px));overflow:hidden}
+.help-dialog[open]{display:flex;flex-direction:column;gap:18px}
+.help-dialog .dialog-heading{gap:20px;flex:none}
+.help-dialog .close-button{flex:none}
+.help-tabs{display:flex;gap:8px;padding:5px;flex:none;border-radius:14px;background:#f0eaf3}
+.help-tabs [role="tab"]{flex:1;border:0;border-radius:10px;padding:12px 10px;background:transparent;color:#655976;font-size:14px;font-weight:650;transition:none}
+.help-tabs [aria-selected="true"]{background:var(--purple);color:#fff;box-shadow:0 2px 4px #46277520}
+.help-tabs [role="tab"]:focus-visible{outline-offset:2px}
+.help-content{overflow-y:auto;overflow-x:hidden;min-height:0;padding:5px 12px 5px 5px;overscroll-behavior:contain;scrollbar-gutter:stable}
+.help-content [role="tabpanel"]{padding:4px;line-height:1.65;font-size:14px;overflow-wrap:anywhere}
+.help-content [role="tabpanel"]:focus-visible{outline:3px solid var(--purple);outline-offset:0;border-radius:8px}
+.help-content h3{font-size:17px;line-height:1.4;margin:22px 0 10px;color:#3e2c4d}
+.help-content h3:first-child{margin-top:0}
+.help-content p{margin:0 0 14px}
+.help-steps{padding-left:24px;margin:0 0 20px}
+.help-steps li{padding-left:5px;margin-bottom:12px}
+.help-steps li::marker{color:var(--purple);font-weight:700}
+.about-brand{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+.about-brand img{flex:none}
+.about-brand h3{font-size:23px;margin:0 0 4px}
+.about-brand p{margin:0;color:var(--muted);font-size:13px}
+.help-content .help-note{font-size:13px;color:var(--muted)}
+.contact-email{user-select:text;cursor:text;color:var(--purple-dark)}
+.help-content .copy-status{min-height:22px;margin:9px 0;color:var(--purple);font-size:13px}
+@media(max-height:700px){.help-dialog{padding:22px}.help-dialog[open]{gap:14px}}

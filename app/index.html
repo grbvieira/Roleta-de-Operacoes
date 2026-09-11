@@ -69,7 +69,7 @@
         </div>
       </section>
     </main>
-    <footer><span>Aprender fica melhor quando a turma participa.</span><span>Tela cheia <kbd>F11</kbd></span></footer>
+    <footer><span>Aprender fica melhor quando a turma participa.</span><button id="help-button" class="button quiet" aria-haspopup="dialog" aria-controls="help-dialog">Ajuda e informações</button><span>Tela cheia <kbd>F11</kbd></span></footer>
   </div>
 
   <dialog id="settings-dialog" aria-labelledby="settings-title">
@@ -82,6 +82,58 @@
       <p id="settings-error" class="error" role="alert" hidden></p>
       <div class="dialog-actions"><button type="button" id="cancel-settings" class="button quiet">Cancelar</button><button type="submit" class="button primary">Aplicar e renovar</button></div>
     </form>
+  </dialog>
+  <dialog id="help-dialog" class="help-dialog" aria-labelledby="help-title">
+    <div class="dialog-heading"><div><p class="eyebrow">PARA A SUA AULA</p><h2 id="help-title">Ajuda e informações</h2></div><button type="button" id="close-help" class="close-button" aria-label="Fechar ajuda">×</button></div>
+    <div class="help-tabs" role="tablist" aria-label="Seções da ajuda">
+      <button type="button" id="help-tab-usage" role="tab" aria-controls="help-usage" aria-selected="true" tabindex="0">Como usar</button>
+      <button type="button" id="help-tab-about" role="tab" aria-controls="help-about" aria-selected="false" tabindex="-1">Sobre</button>
+      <button type="button" id="help-tab-privacy" role="tab" aria-controls="help-privacy" aria-selected="false" tabindex="-1">Privacidade</button>
+    </div>
+    <div class="help-content">
+      <section id="help-usage" role="tabpanel" aria-labelledby="help-tab-usage" tabindex="0">
+        <h3>Uma atividade com a turma</h3>
+        <ol class="help-steps">
+          <li>Escolha Adição, Subtração, Multiplicação ou Divisão no menu.</li>
+          <li>Abra <strong>Ajustar números</strong> e defina os mínimos e máximos. Para fixar um número, coloque o mesmo valor nos dois campos.</li>
+          <li>Clique em <strong>Girar</strong> uma vez e aguarde a parada automática.</li>
+          <li>Leia a conta indicada pela seta e peça a resposta à turma.</li>
+          <li>Clique em <strong>Mostrar resposta</strong> para conferir o resultado.</li>
+          <li>Use <strong>Novas contas</strong> para renovar a rodada ou volte a <strong>Operações</strong> para escolher outra categoria.</li>
+        </ol>
+        <h3>Números da rodada</h3>
+        <p>A roleta tem até dez contas diferentes. Com poucas combinações válidas, ela terá menos setores. Ao renovar, as contas mudam ou trocam de posição; se houver apenas uma combinação, amplie os intervalos para obter outra conta. Entrar novamente em uma categoria também renova a rodada.</p>
+        <p>Use números inteiros de 0 a 1.000. As subtrações não produzem resultados negativos. As divisões são exatas e o divisor deve ser maior que zero.</p>
+        <p>Os intervalos são salvos por operação para a próxima aula. Se o armazenamento local não estiver disponível, os ajustes continuam funcionando durante a sessão.</p>
+        <h3>Atalhos</h3>
+        <p><kbd>F11</kbd> entra ou sai da tela cheia. <kbd>Escape</kbd> fecha primeiro a ajuda ou os ajustes; sem diálogo aberto, sai da tela cheia.</p>
+        <p>Use <kbd>Tab</kbd> para navegar pelos controles. Nas seções da ajuda, use as setas para a esquerda e a direita, <kbd>Home</kbd> ou <kbd>End</kbd>.</p>
+      </section>
+      <section id="help-about" role="tabpanel" aria-labelledby="help-tab-about" tabindex="0" hidden>
+        <div class="about-brand"><img src="./assets/app-icon.svg" alt="Ícone da Roleta de Operações" width="64" height="64"><div><h3>Roleta de Operações</h3><p id="app-version" role="status">Carregando versão…</p></div></div>
+        <p>Aplicativo educativo para praticar adição, subtração, multiplicação e divisão em sala de aula, com contas configuráveis, roleta interativa e funcionamento offline.</p>
+        <p><strong>Desenvolvido por Gerson Vieira</strong><br>Engenheiro de Software e criador de produtos digitais</p>
+        <h3>Material pedagógico</h3>
+        <p>Ideia original e titularidade do material pedagógico original: Professor Arnaldo Macedo Vieira.</p>
+        <p class="help-note">Esse crédito se refere ao material pedagógico original e não comprova a autoria ou a licença de todas as imagens incorporadas.</p>
+        <h3>Contato</h3>
+        <p>Dúvidas e sugestões: <span id="contact-email" class="contact-email">gersonrbvieira@gmail.com</span></p>
+        <button type="button" id="copy-email" class="button outline">Copiar e-mail</button>
+        <p id="copy-email-status" class="copy-status" role="status" aria-live="polite" aria-atomic="true"></p>
+        <p class="help-note">O contato é opcional. Copie o endereço e use seu aplicativo de e-mail externo. O envio depende de um aplicativo de e-mail configurado e de conexão com a internet. A roleta não envia mensagens nem anexa dados automaticamente.</p>
+      </section>
+      <section id="help-privacy" role="tabpanel" aria-labelledby="help-tab-privacy" tabindex="0" hidden>
+        <h3>Configurações neste computador</h3>
+        <p>O aplicativo salva os valores mínimos e máximos dos dois números de cada operação. Esses ajustes ficam no armazenamento local, no perfil do usuário do computador, para serem usados nas próximas sessões.</p>
+        <p>As contas da rodada e a seleção ficam apenas na memória enquanto o aplicativo está aberto. Não há cadastro, campos para dados de alunos ou histórico salvo de contas e respostas.</p>
+        <h3>Funcionamento offline</h3>
+        <p>A atividade, as imagens e estes textos de ajuda estão incluídos no aplicativo e funcionam sem internet. O código da roleta não inclui analytics, telemetria ou rotinas de envio de informações para um servidor; as conexões externas da interface são bloqueadas.</p>
+        <p>O Electron, que executa o aplicativo, também pode manter arquivos técnicos de funcionamento, como cache, no perfil local.</p>
+        <h3>Contato por e-mail</h3>
+        <p>Ao clicar em <strong>Copiar e-mail</strong>, somente o endereço de contato é colocado na área de transferência do Windows. Nenhuma mensagem é enviada.</p>
+        <p>Se decidir entrar em contato, você escreve e envia a mensagem em seu aplicativo de e-mail externo. Esse envio é opcional, depende de conexão com a internet e segue o funcionamento do serviço de e-mail escolhido.</p>
+      </section>
+    </div>
   </dialog>
 </body>
 </html>

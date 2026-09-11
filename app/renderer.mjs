@@ -1,5 +1,6 @@
 import { OPERATIONS, generateRound, validateSettings } from './core/math.mjs';
 import { START_ANGLE, planSpin, angleAtTime, normalizeAngle, sectorAtPointer } from './core/wheel.mjs';
+import { initializeHelp } from './help.mjs';
 
 const $ = id => document.getElementById(id);
 const NS = 'http://www.w3.org/2000/svg';
@@ -16,6 +17,7 @@ try {
 const state = { operation: null, problems: [], rotation: 0, selected: null, phase: 'ready' };
 const previous = new Map();
 let frame = 0;
+initializeHelp({ canOpen: () => state.phase !== 'spinning' });
 
 function svgElement(tag, attributes, text) {
   const element = document.createElementNS(NS, tag);
@@ -91,7 +93,7 @@ function resetSelection() {
   setBusy(false);
 }
 function setBusy(busy) {
-  for (const id of ['spin-button', 'back-button', 'settings-button', 'new-round-button']) $(id).disabled = busy;
+  for (const id of ['spin-button', 'back-button', 'settings-button', 'new-round-button', 'help-button']) $(id).disabled = busy;
   $('answer-button').disabled = busy || state.selected === null;
   $('spin-label').textContent = busy ? 'Girando…' : 'Girar';
   $('wheel').setAttribute('aria-busy', String(busy));
@@ -172,6 +174,7 @@ function spin() {
   frame = requestAnimationFrame(tick);
 }
 function showSettings() {
+  if (state.phase === 'spinning' || document.querySelector('dialog[open]')) return;
   const operation = OPERATIONS[state.operation];
   $('settings-operation').textContent = operation.title.toLocaleUpperCase('pt-BR');
   $('a-legend').textContent = operation.labels[0];

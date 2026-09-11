@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, protocol, session } = require('electron');
+const { app, BrowserWindow, Menu, protocol, session, ipcMain, clipboard } = require('electron');
 const path = require('node:path');
 const fs = require('node:fs/promises');
 
@@ -44,7 +44,10 @@ function createWindow() {
     backgroundColor: '#f7f4ed', title: 'Roleta de Operações',
     icon: path.join(appRoot, 'assets', 'app.ico'),
     show: false, autoHideMenuBar: true,
-    webPreferences: { nodeIntegration: false, contextIsolation: true, sandbox: true, spellcheck: false }
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.cjs'),
+      nodeIntegration: false, contextIsolation: true, sandbox: true, spellcheck: false
+    }
   });
   window.webContents.setWindowOpenHandler(() => ({ action: 'deny' }));
   window.webContents.on('will-navigate', event => event.preventDefault());
@@ -52,10 +55,7 @@ function createWindow() {
   window.webContents.on('before-input-event', (event, input) => {
     if (input.type === 'keyDown' && input.key === 'F11') {
       event.preventDefault();
-      window.setFullScreen(!window.isFullScreen());
-    }
-    if (input.type === 'keyDown' && input.key === 'Escape' && window.isFullScreen()) {
-      window.setFullScreen(false);
+      if (!input.isAutoRepeat) window.setFullScreen(!window.isFullScreen());
     }
   });
   window.once('ready-to-show', () => { if (!testing) window.show(); });
@@ -69,6 +69,26 @@ function createWindow() {
 app.whenReady().then(() => {
   if (testing) console.log('[roleta] Electron pronto');
   Menu.setApplicationMenu(null);
+  const trustedWindow = event => {
+    const window = BrowserWindow.fromWebContents(event.sender);
+    if (!window || !event.senderFrame || event.senderFrame !== event.sender.mainFrame ||
+        event.senderFrame.url !== 'roleta://app/index.html') {
+      throw new Error('Origem não autorizada.');
+    }
+    return window;
+  };
+  ipcMain.handle('roleta:get-version', event => {
+    trustedWindow(event);
+    return app.getVersion();
+  });
+  ipcMain.handle('roleta:copy-contact-email', event => {
+    trustedWindow(event);
+    clipboard.writeText('gersonrbvieira@gmail.com');
+  });
+  ipcMain.handle('roleta:exit-fullscreen', event => {
+    // The renderer handles Escape in dialogs before requesting this operation.
+    trustedWindow(event).setFullScreen(false);
+  });
   protocol.handle('roleta', serveLocal);
   session.defaultSession.setPermissionRequestHandler((_contents, _permission, callback) => callback(false));
   session.defaultSession.setPermissionCheckHandler(() => false);

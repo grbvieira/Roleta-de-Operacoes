@@ -2,7 +2,7 @@
   "name": "roleta-de-operacoes",
   "version": "1.0.0",
   "description": "Roleta educativa das quatro operações, para Windows e totalmente offline.",
-  "author": "Projeto Roleta de Operações",
+  "author": "Gerson Vieira",
   "private": true,
   "type": "module",
   "main": "desktop/main.cjs",
