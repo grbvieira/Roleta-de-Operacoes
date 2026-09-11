@@ -20,7 +20,7 @@ export async function checkHelpKeepsActivity(page) {
   const before = await activitySnapshot(page);
   await page.locator('#help-button').click();
   assert.equal(await page.locator('#help-dialog').isVisible(), true);
-  for (const section of ['about', 'privacy', 'usage']) {
+  for (const section of ['about', 'privacy', 'credits', 'usage']) {
     await page.locator(`#help-tab-${section}`).click();
     assert.equal(await page.locator(`#help-${section}`).isVisible(), true);
   }
@@ -79,12 +79,15 @@ export async function checkHelpInterface({ page, desktop, capture }) {
 
   await page.locator('#help-tab-about').focus();
   await page.keyboard.press('End');
+  assert.equal(await page.locator('#help-tab-credits').getAttribute('aria-selected'), 'true');
+  await page.keyboard.press('ArrowLeft');
   assert.equal(await page.locator('#help-tab-privacy').getAttribute('aria-selected'), 'true');
   await capture('06-ajuda-privacidade.png');
+  await page.keyboard.press('End');
   await page.keyboard.press('ArrowRight');
   assert.equal(await page.locator('#help-tab-usage').getAttribute('aria-selected'), 'true');
   await page.keyboard.press('ArrowLeft');
-  assert.equal(await page.locator('#help-tab-privacy').getAttribute('aria-selected'), 'true');
+  assert.equal(await page.locator('#help-tab-credits').getAttribute('aria-selected'), 'true');
   await page.keyboard.press('Home');
   assert.equal(await page.locator('#help-tab-usage').getAttribute('aria-selected'), 'true');
   assert.equal(await page.locator('#help-tab-usage').evaluate(element => getComputedStyle(element).outlineStyle), 'solid');

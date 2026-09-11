@@ -109,7 +109,7 @@ try {
   await capture('01-menu.png');
   checks.push('Primeira abertura com perfil vazio e rede emulada offline; imagens locais carregadas.');
   await checkHelpInterface({ page, desktop, capture });
-  checks.push('Ajuda offline: três seções, versão real, cópia fixa via IPC, teclado, foco, rolagem e Escape prioritário.');
+  checks.push('Ajuda offline: quatro seções, versão real, cópia fixa via IPC, teclado, foco, rolagem e Escape prioritário.');
 
   for (const operation of ['addition', 'subtraction', 'multiplication', 'division']) {
     await enter(operation);
