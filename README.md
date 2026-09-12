@@ -20,7 +20,7 @@ As notas da versão e o SHA-256 do instalador estão na página da Release. Para
 
 ## Telas do aplicativo
 
-Capturas reais do aplicativo em desenvolvimento, com as alterações em preparação para a próxima versão. As [capturas da v1.0.0](docs/referencias/capturas-v1.0.0/) foram preservadas como referência.
+Capturas reais do aplicativo, com os recursos visuais da versão 1.1.0. As [capturas da v1.0.0](docs/referencias/capturas-v1.0.0/) foram preservadas como referência.
 
 | Menu inicial | Adição |
 | --- | --- |
@@ -53,7 +53,7 @@ O botão **Ajuda e informações**, no rodapé do menu e da atividade, abre quat
 - **Como usar:** guia para conduzir a atividade, ajustar os números e usar os atalhos.
 - **Sobre:** versão obtida do próprio aplicativo, autoria, crédito pedagógico e contato com o botão **Copiar e-mail**.
 - **Privacidade:** o que fica salvo no computador e como funciona o contato opcional.
-- **Créditos e licenças:** contribuição pedagógica, procedência dos recursos e avisos dos componentes distribuídos.
+- **Créditos e licenças:** contribuição pedagógica, procedência dos recursos, avisos de terceiros e licença de uso completa.
 
 ![Seção Créditos e licenças na janela de ajuda](docs/imagens/creditos-licencas.png)
 
@@ -61,15 +61,23 @@ A ajuda funciona offline. Use **Tab** para percorrer os controles e as setas, **
 
 Os intervalos são armazenados por operação no perfil local do usuário. O aplicativo não tem cadastro, campos para dados de alunos, histórico salvo de respostas ou telemetria. Para entrar em contato, copie `gersonrbvieira@gmail.com` e use seu aplicativo de e-mail; o envio depende desse aplicativo e de internet.
 
-O código atual também usa novos cenário, grupos de estudantes e representação do professor, com elementos separados e proporções preservadas. A procedência informada e as pendências estão em [ORIGEM.md](app/assets/ORIGEM.md); os componentes distribuídos estão no [inventário de terceiros](docs/terceiros.md).
+O aplicativo usa cenário, grupos de estudantes e representação do professor, com elementos separados e proporções preservadas. O responsável confirmou que os quatro novos recursos foram gerados no ChatGPT; veja [ORIGEM.md](app/assets/ORIGEM.md). Os componentes distribuídos estão no [inventário de terceiros](docs/terceiros.md).
 
-Essas alterações estão em preparação para a próxima versão e não foram publicadas nesta etapa. Consulte as notas da Release baixada para saber quais recursos ela contém.
+As mudanças desde a versão anterior estão nas [notas da v1.1.0](docs/notas/v1.1.0.md). Consulte a página de Releases para baixar a distribuição disponível.
+
+## Licença de uso
+
+Software de Gerson Vieira sob [licença proprietária de uso gratuito](LICENSE.txt) para pessoas, professores e instituições públicas ou privadas, inclusive em aulas remuneradas. A versão recebida permanece gratuita enquanto a licença for cumprida, sem cobrança retroativa ou expiração automática. Versões futuras, edições adicionais e serviços poderão ser pagos.
+
+É permitido compartilhar o link oficial de download. Modificação, revenda, sublicenciamento e redistribuição dependem de autorização, com as ressalvas da licença, da lei, dos termos do GitHub e das licenças de terceiros. As permissões de visualização e fork do repositório público são preservadas. O texto completo também está disponível offline em **Créditos e licenças** e junto ao executável. Autorizações: `gersonrbvieira@gmail.com`.
+
+O crédito pedagógico ao Professor Arnaldo Macedo Vieira não estende essa licença ao PowerPoint original. O licenciamento do software não promete direitos exclusivos sobre os recursos gerados com IA.
 
 ## Compatibilidade
 
 A distribuição é para **Windows 10 e 11 x64 (Intel/AMD)**. Windows 7, 8, 8.1 e sistemas de 32 bits não são suportados. Não há pacote nativo ARM64 neste projeto. A compatibilidade acompanha o [Electron 44.3.0](https://github.com/electron/electron/blob/v44.3.0/README.md#platform-support).
 
-A versão 1.0.0 não tem assinatura digital. A instalação e o uso no projetor ainda precisam ser conferidos no computador da escola; veja o [registro de testes](docs/validacao.md).
+O instalador não tem assinatura digital. O usuário confirmou o funcionamento no computador da escola e a desinstalação; não relatou teste de atualização entre versões. A abrangência desses relatos e das verificações automatizadas está no [registro de testes](docs/validacao.md).
 
 ## Desenvolvimento
 
@@ -105,11 +113,11 @@ npm.cmd run test:packaged
 npm.cmd run verify:distribution
 ```
 
-Arquivos gerados para a versão 1.0.0:
+Arquivos gerados para a versão 1.1.0:
 
 ```text
-dist/Roleta-Operacoes-1.0.0-Windows-x64-Instalador.exe
-dist/Roleta-Operacoes-1.0.0-Windows-x64.zip
+dist/Roleta-Operacoes-1.1.0-Windows-x64-Instalador.exe
+dist/Roleta-Operacoes-1.1.0-Windows-x64.zip
 dist/SHA256SUMS.txt
 ```
 
@@ -130,10 +138,10 @@ Veja o [procedimento de lançamento](docs/releases.md) para atualizar a versão,
 ## Código e documentação
 
 - [Arquitetura](docs/arquitetura.md): módulos, regras das contas e cálculo do giro.
-- [Testes](docs/validacao.md): verificações realizadas e teste pendente na escola.
+- [Testes](docs/validacao.md): verificações realizadas, relatos do usuário e limites da cobertura.
 - [Lançamentos](docs/releases.md): publicação do instalador pelo GitHub Actions.
-- [Próxima versão](docs/proxima-release.md): notas ainda não publicadas.
-- [Origem das imagens](app/assets/ORIGEM.md): recursos atuais e informações pendentes.
+- [Versão 1.1.0](docs/notas/v1.1.0.md): notas das alterações.
+- [Origem das imagens](app/assets/ORIGEM.md): recursos atuais e procedência informada.
 - [Componentes e avisos](docs/terceiros.md): runtime, ferramentas e licenças de terceiros.
 
 O PowerPoint `roleta da adição.pptx` é uma referência local e está no `.gitignore`. As imagens necessárias já estão em `app/assets/`; o original não é necessário para executar ou empacotar o projeto. Quem tiver o arquivo na raiz pode conferir sua integridade com `npm.cmd run verify:reference`.

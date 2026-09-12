@@ -1,6 +1,8 @@
 # Registro de verificações
 
-Os registros são separados por etapa. A versão do manifesto continua em 1.0.0; as alterações locais posteriores à publicação ainda não integram a Release disponível no GitHub.
+Os registros são separados por etapa. A versão atual do manifesto é 1.1.0. Os resultados e as pendências históricas abaixo descrevem o estado em cada data; a atualização mais recente está ao final.
+
+O usuário confirmou o funcionamento no computador da escola e a desinstalação em relato recebido nesta tarefa, em 12/09/2026. Esses itens estão concluídos conforme esse relato, sem atribuí-los a uma execução automatizada. Não foram informados a versão testada, detalhes do equipamento ou um teste de atualização entre versões.
 
 ## Distribuição inicial — 10/09/2026
 
@@ -51,7 +53,7 @@ O teste do pacote abre `dist/win-unpacked/Roleta de Operações.exe`. O instalad
 
 ## Teste no computador da escola
 
-Ainda falta validar no equipamento de destino:
+Roteiro elaborado na preparação inicial. O funcionamento na escola e a desinstalação foram posteriormente confirmados pelo usuário, conforme atualização acima. Os passos abaixo servem para repetir a verificação quando necessário:
 
 1. Windows 10 ou 11 x64 e permissão para instalar ou executar o aplicativo com o usuário da escola.
 2. Instalação ou extração do ZIP e primeira abertura com a rede desligada.
@@ -67,7 +69,7 @@ Roteiro para a próxima versão, com a conta de usuário usada pelo professor:
 - Instalar uma versão posterior sobre a anterior, conferir a versão em Sobre e a preservação dos intervalos. Esse teste depende da definição e geração dessa versão posterior.
 - Fechar o aplicativo, desinstalar pelas configurações do Windows e conferir a remoção do programa e dos atalhos. Registrar se o perfil local de configurações foi mantido ou removido.
 
-Instalação, atualização e desinstalação não foram executadas nesta etapa. Gerar o instalador e abrir `win-unpacked` não comprova esses procedimentos.
+Os testes automatizados desta preparação inicial não executaram instalação, atualização ou desinstalação. O relato posterior do usuário confirma o funcionamento na escola e a desinstalação; não informa teste de atualização. Gerar o instalador e abrir `win-unpacked` não comprova esses procedimentos.
 
 Os testes automatizados não cobrem as políticas de execução da escola nem o desempenho no projetor. Eventuais bloqueios do executável sem assinatura precisam ser avaliados pela equipe de TI.
 
@@ -123,3 +125,23 @@ Os PNGs mantêm os arquivos fornecidos, suas proporções e a transparência dos
 O instalador gerado mede aproximadamente 114,7 MiB e o ZIP, 154,5 MiB. A conferência confirmou os novos recursos e os avisos originais do Electron, Chromium e NSIS; o PowerPoint, as referências antigas e os arquivos de desenvolvimento ficaram fora do pacote. Isso verifica o conteúdo preparado para distribuição, sem substituir o teste do assistente de instalação.
 
 Continuam pendentes a instalação, atualização, desinstalação e o uso real no projetor da escola, seguindo o roteiro acima. A procedência completa do avatar, os termos de uso e redistribuição das imagens e a licença do código dependem do responsável; veja [ORIGEM.md](../app/assets/ORIGEM.md) e o [inventário de terceiros](terceiros.md).
+
+## Versão 1.1.0 — 12/09/2026
+
+Atualização do registro anterior: o responsável confirmou a geração dos quatro novos recursos no ChatGPT, incluindo o avatar, e definiu a licença proprietária de uso gratuito. Esses pontos estão resolvidos conforme suas decisões, sem declaração de direitos exclusivos sobre as imagens. A árvore da tag v1.0.0 e a Release anterior foram consultadas; não foi encontrada uma licença própria do projeto, e nenhuma permissão anterior ou licença de terceiros foi substituída retroativamente.
+
+O funcionamento no computador da escola e a desinstalação foram confirmados pelo usuário. O relato não identifica a versão usada, a data de cada teste ou detalhes sobre hardware, projetor e rede; não foram acrescentados resultados específicos a essa confirmação. Atualização entre versões não foi relatada.
+
+Verificações locais desta preparação:
+
+- 28 testes unitários aprovados, incluindo correspondência entre a licença completa offline, o documento canônico e os metadados.
+- `verify:release -- v1.1.0` aprovado: versão do aplicativo e as duas entradas do lock correspondem à tag preparada.
+- `test:desktop` aprovado: quatro operações, seta e respostas, ajustes, renovação, persistência ao reabrir, ajuda, teclado e licença completa com perfil novo e rede emulada offline.
+- Workflow aprovado no actionlint 1.7.12; testes de publicação verificam as notas em português, o hash e a recusa de Releases existentes, sem chamadas reais de publicação nesses testes.
+- PowerPoint com hash original; revisão dos arquivos previstos para envio sem arquivos ignorados rastreados ou padrões comuns de credenciais identificados.
+
+O texto completo da licença foi inspecionado na interface real. Nenhum teste automatizado aqui descrito executa o assistente de instalação, a atualização ou a desinstalação do aplicativo.
+
+`dist:win`, `test:packaged` e `verify:distribution` também foram concluídos com sucesso para a v1.1.0. O executável empacotado passou nos mesmos fluxos offline da interface, incluindo a licença completa. O verificador foi corrigido para procurar `LICENSE.txt` junto ao executável: arquivos declarados em `extraFiles` são excluídos do ASAR pelo empacotador. A ajuda contém o texto gerado em `app/license.mjs`, conferido contra o documento canônico.
+
+Uma comparação adicional confirmou que o ASAR, a licença própria, o guia e os quatro avisos de terceiros no ZIP são idênticos aos da pasta testada. O instalador local tem aproximadamente 114,7 MiB; o ZIP, 154,5 MiB. A captura dos créditos foi atualizada a partir do executável real. A execução do Actions e a Release correspondentes podem ser consultadas no GitHub; sucesso do build não substitui o teste de atualização ainda não relatado.
