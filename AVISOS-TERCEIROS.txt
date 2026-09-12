@@ -1,7 +1,7 @@
 ROLETA DE OPERAÇÕES — COMPONENTES E RECURSOS
 
-Este documento descreve os componentes distribuídos. Ele não define uma
-licença para o código do projeto nem para suas imagens.
+Este documento descreve os componentes distribuídos. A licença própria do
+software está em LICENSE.txt e não substitui as licenças destes componentes.
 
 RUNTIME INCLUÍDO
 
@@ -48,10 +48,10 @@ no runtime não significa que a atividade inclua faixas de áudio.
 
 RECURSOS VISUAIS E CRÉDITOS
 
-O responsável informou que gerou novas imagens com inteligência artificial.
-Não informou ferramenta, prompts, datas ou termos de uso. A procedência
-completa do avatar professor-arnaldo.png permanece pendente. Representar o
-professor não comprova a titularidade dos direitos sobre a ilustração.
+O responsável confirmou que cenario-escola.png, estudantes-sala.png,
+estudantes-roleta.png e professor-arnaldo.png foram gerados no ChatGPT.
+Não informou prompts, datas ou modelos utilizados. Representar o professor
+não atribui a ele a criação da ilustração nem comprova direitos exclusivos.
 
 O ícone é uma composição vetorial dos símbolos + e ×. As imagens não foram
 classificadas como domínio público, exclusivas ou livres de direitos.
@@ -60,7 +60,8 @@ Ideia original e titularidade do material pedagógico original:
 Professor Arnaldo Macedo Vieira.
 Esse crédito pedagógico não é uma licença das imagens incorporadas.
 
-Uma licença para o código do projeto ainda será definida pelo responsável.
+O software usa licença proprietária de uso gratuito, disponível em LICENSE.txt.
+Ela não promete direitos exclusivos sobre os recursos gerados com IA.
 Os avisos de terceiros não se estendem automaticamente ao projeto.
 
 Suporte: gersonrbvieira@gmail.com

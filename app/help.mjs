@@ -1,8 +1,11 @@
+import { licenseText } from './license.mjs';
+
 export function initializeHelp({ canOpen }) {
   const dialog = document.getElementById('help-dialog');
   const opener = document.getElementById('help-button');
   const tabs = [...dialog.querySelectorAll('[role="tab"]')];
   const status = document.getElementById('copy-email-status');
+  document.getElementById('project-license-text').textContent = licenseText;
   let returnFocus = opener;
   let copyPending = false;
 

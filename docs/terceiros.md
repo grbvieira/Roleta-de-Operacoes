@@ -4,7 +4,7 @@ A inspeção considerou `package.json`, o conteúdo de `resources/app.asar`, a p
 
 | Grupo | Presença no produto | Avisos |
 | --- | --- | --- |
-| Código, imagens e ícone da roleta | Dentro de `app.asar` | Procedência em [ORIGEM.md](../app/assets/ORIGEM.md); licença do código ainda não definida |
+| Código, imagens e ícone da roleta | Dentro de `app.asar` | Software sob [licença proprietária de uso gratuito](../LICENSE.txt); recursos visuais descritos separadamente em [ORIGEM.md](../app/assets/ORIGEM.md) |
 | Electron 44.3.0 x64 | Executável e arquivos auxiliares | `LICENSE.electron.txt`, licença MIT |
 | Chromium, Node.js, V8, ICU e outros componentes | Incorporados ao runtime | Textos completos em `LICENSES.chromium.html` |
 | FFmpeg, SwiftShader e componentes Vulkan | Bibliotecas do runtime | Blocos próprios no mesmo HTML; o bloco FFmpeg inclui o texto LGPL |
@@ -17,6 +17,8 @@ O HTML oficial desta versão contém 780 entradas de avisos, incluindo dependên
 
 Os arquivos originais do Electron são preservados sem edição. `npm.cmd run verify:distribution` compara seus bytes com os arquivos do runtime utilizado no build, além de conferir o [AVISOS-TERCEIROS.txt](../AVISOS-TERCEIROS.txt). O texto de ajuda informa onde encontrar esses documentos para leitura offline.
 
-Não foi encontrada uma licença própria do código do projeto. Não foi escolhida uma nesta alteração. A procedência do avatar e os termos de redistribuição dos recursos visuais ainda dependem de confirmação do responsável.
+Na inspeção da Release v1.0.0 e de sua árvore de código não foi encontrada uma licença própria do projeto. A partir da v1.1.0, o responsável adotou a licença em `LICENSE.txt`, sem alteração retroativa de permissões anteriores. Os avisos de terceiros permanecem preservados. Os quatro novos recursos, incluindo o avatar, foram gerados no ChatGPT conforme confirmação do responsável; não há declaração de direitos exclusivos sobre eles.
+
+A licença própria preserva as permissões de visualização e fork aplicáveis ao repositório público pelos [termos do GitHub](https://docs.github.com/en/site-policy/github-terms/github-terms-of-service). O repositório permanece público.
 
 Referências: [licença do Electron utilizado](https://github.com/electron/electron/blob/v44.3.0/LICENSE), [fontes e revisões das dependências](https://github.com/electron/electron/tree/v44.3.0), [artefatos oficiais](https://github.com/electron/electron/releases/tag/v44.3.0).

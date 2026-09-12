@@ -57,6 +57,8 @@ O pacote inclui o Electron e as imagens. `LEIA-ME.txt` acompanha a distribuiçã
 
 Os avisos de terceiros acompanham o executável e são descritos na seção **Créditos e licenças** da ajuda. O [inventário](terceiros.md) distingue os componentes do runtime das ferramentas de desenvolvimento.
 
+`LICENSE.txt` é a fonte da licença própria. `scripts/sync-license.cjs` gera `app/license.mjs` para exibir o texto completo na ajuda, sem rede ou novas funções IPC. A geração ocorre ao iniciar pelo npm e ao empacotar; depois de editar a licença, execute o script antes dos testes. Um teste compara o texto gerado com o documento original. O instalador apresenta a licença e a distribuição inclui uma cópia junto ao executável.
+
 ## Referência visual
 
 O arquivo `roleta da adição.pptx` é uma referência local, ignorada pelo Git. Ele contém três slides com roletas de dez setores para adição, subtração e multiplicação. As imagens usadas pelo aplicativo estão em `app/assets/`; a origem de cada uma está em [ORIGEM.md](../app/assets/ORIGEM.md).

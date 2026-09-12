@@ -1,4 +1,5 @@
 const path = require('node:path');
+require('./sync-license.cjs');
 process.env.ELECTRON_CACHE = path.resolve('.cache/electron');
 process.env.ELECTRON_BUILDER_CACHE = path.resolve('.cache/electron-builder');
 process.env.CSC_IDENTITY_AUTO_DISCOVERY = 'false';

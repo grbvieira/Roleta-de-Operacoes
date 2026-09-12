@@ -68,8 +68,23 @@ ou a licença de todas as imagens incorporadas.
 
 Os avisos de terceiros estão na pasta do aplicativo, junto ao executável:
 AVISOS-TERCEIROS.txt, LICENSE.electron.txt, LICENSES.chromium.html e
-LICENSES.nsis.txt. A procedência completa do avatar e os termos das imagens
-ainda dependem de confirmação. A licença do código não foi definida.
+LICENSES.nsis.txt. O responsável confirmou que os quatro novos recursos,
+incluindo o avatar do professor, foram gerados no ChatGPT. Não foram
+informados prompts, datas ou modelos, nem prometidos direitos exclusivos.
+
+LICENÇA DE USO
+
+Esta versão tem licença proprietária de uso gratuito para pessoas,
+professores e instituições de ensino, inclusive escolas privadas e aulas
+remuneradas. Pode ser instalada nos computadores usados nessas atividades.
+Não há cobrança retroativa nem expiração automática da versão recebida.
+Versões futuras, edições adicionais e serviços poderão ser pagos.
+
+Compartilhe o link oficial de download. Modificação, revenda, sublicenciamento
+e redistribuição dependem de autorização, com as ressalvas da licença, da
+lei, dos termos do GitHub e das licenças de terceiros. Preserve os avisos.
+O texto completo está em LICENSE.txt e em "Créditos e licenças", offline.
+Autorizações: gersonrbvieira@gmail.com.
 
 ANTES DA PRIMEIRA AULA
 

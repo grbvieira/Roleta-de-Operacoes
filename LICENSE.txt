@@ -1,0 +1,69 @@
+ROLETA DE OPERAÇÕES — LICENÇA PROPRIETÁRIA DE USO GRATUITO
+
+1. Responsável e alcance
+
+Gerson Vieira é o responsável pelo software Roleta de Operações e concede
+as permissões abaixo sobre o software e o código de sua titularidade.
+Esta licença acompanha a distribuição a partir da versão 1.1.0. Ela não
+retira nem modifica retroativamente permissões concedidas para versões
+anteriores, nem substitui licenças de terceiros.
+
+2. Uso gratuito permitido
+
+Pessoas, professores e instituições de ensino públicas ou privadas podem
+usar gratuitamente a versão recebida sob esta licença em atividades
+educativas, inclusive em aulas remuneradas. Podem instalá-la e executá-la
+nos computadores utilizados pelo usuário ou pela instituição nessas
+atividades, incluindo a cópia interna necessária à instalação.
+
+O uso gratuito desta versão pode continuar enquanto estas condições forem
+cumpridas, sem cobrança retroativa ou expiração automática. Não há ativação,
+pagamento obrigatório ou prazo de validade para esse uso.
+
+3. Restrições e compartilhamento
+
+Sem autorização de Gerson Vieira, não é permitido modificar, revender,
+sublicenciar ou redistribuir o aplicativo ou seu código, exceto pelas cópias
+internas expressamente permitidas acima. Ficam ressalvadas as permissões
+obrigatórias por lei e aquelas previstas nas licenças de terceiros.
+
+É permitido compartilhar o link oficial de download:
+https://github.com/grbvieira/Roleta-de-Operacoes/releases/latest
+
+Os avisos de autoria, créditos e licença devem ser preservados.
+Enquanto o repositório for público no GitHub, permanecem as permissões de
+visualização, fork e demais usos pela plataforma previstos nos termos do
+GitHub. Essas permissões não são restringidas por este documento.
+
+4. Versões futuras e suporte
+
+Gerson Vieira poderá oferecer versões futuras, edições adicionais e serviços
+pagos. Isso não altera a gratuidade da versão já recebida sob estas condições.
+Não há promessa de atualizações ou suporte gratuito por tempo indeterminado.
+Permanecem preservadas as obrigações legais aplicáveis.
+
+5. Recursos visuais, material pedagógico e terceiros
+
+Ideia original e titularidade do material pedagógico original:
+Professor Arnaldo Macedo Vieira.
+
+Esse crédito é pedagógico e não atribui ao professor a criação de todas as
+ilustrações. Esta licença não se estende automaticamente ao PowerPoint
+original nem a outros materiais de terceiros.
+
+Segundo informação do responsável, os quatro novos recursos visuais foram
+gerados no ChatGPT. Esta licença trata do software: não declara direitos
+exclusivos sobre recursos gerados com IA, não os coloca em domínio público
+e não garante ausência de direitos de terceiros. A procedência registrada
+está em app/assets/ORIGEM.md e nos créditos do aplicativo.
+
+Electron, Chromium, Node.js, NSIS e demais componentes de terceiros continuam
+regidos por suas próprias licenças, com as respectivas permissões e avisos.
+As restrições desta licença não reduzem essas permissões. Consulte
+AVISOS-TERCEIROS.txt, LICENSE.electron.txt, LICENSES.chromium.html e
+LICENSES.nsis.txt na pasta do aplicativo.
+
+6. Autorizações e contato
+
+Para solicitar autorização de modificação, redistribuição ou outros usos
+não concedidos por esta licença, escreva para gersonrbvieira@gmail.com.

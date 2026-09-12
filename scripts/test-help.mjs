@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 
 async function activitySnapshot(page) {
   return page.evaluate(() => ({
@@ -80,6 +81,17 @@ export async function checkHelpInterface({ page, desktop, capture }) {
   await page.locator('#help-tab-about').focus();
   await page.keyboard.press('End');
   assert.equal(await page.locator('#help-tab-credits').getAttribute('aria-selected'), 'true');
+  await capture('06-creditos-licencas.png');
+  const license = (await readFile(new URL('../LICENSE.txt', import.meta.url), 'utf8')).replaceAll('\r\n', '\n');
+  await page.locator('#help-credits summary').focus();
+  await page.keyboard.press('Enter');
+  assert.equal(await page.locator('#project-license-text').isVisible(), true);
+  assert.equal(await page.locator('#project-license-text').textContent(), license);
+  await page.keyboard.press('PageDown');
+  await capture('06-licenca-completa.png');
+  await page.locator('#help-credits summary').focus();
+  await page.keyboard.press('Enter');
+  await page.locator('#help-tab-credits').focus();
   await page.keyboard.press('ArrowLeft');
   assert.equal(await page.locator('#help-tab-privacy').getAttribute('aria-selected'), 'true');
   await capture('06-ajuda-privacidade.png');

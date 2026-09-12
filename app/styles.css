@@ -40,3 +40,4 @@ footer .button{font-size:12px;min-height:40px;padding:9px 14px}
 @media(max-height:700px){.help-dialog{padding:22px}.help-dialog[open]{gap:14px}}
 .scene-teacher{left:2%;bottom:36px;height:82%;max-width:27%;object-position:center bottom}
 .scene-children{right:2%;bottom:36px;width:76%;max-height:72%;object-position:center bottom}
+.license-text{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;line-height:1.6;user-select:text}summary{cursor:pointer}summary:focus-visible{outline:3px solid var(--purple);outline-offset:4px}
