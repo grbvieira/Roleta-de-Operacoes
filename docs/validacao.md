@@ -145,3 +145,9 @@ O texto completo da licença foi inspecionado na interface real. Nenhum teste au
 `dist:win`, `test:packaged` e `verify:distribution` também foram concluídos com sucesso para a v1.1.0. O executável empacotado passou nos mesmos fluxos offline da interface, incluindo a licença completa. O verificador foi corrigido para procurar `LICENSE.txt` junto ao executável: arquivos declarados em `extraFiles` são excluídos do ASAR pelo empacotador. A ajuda contém o texto gerado em `app/license.mjs`, conferido contra o documento canônico.
 
 Uma comparação adicional confirmou que o ASAR, a licença própria, o guia e os quatro avisos de terceiros no ZIP são idênticos aos da pasta testada. O instalador local tem aproximadamente 114,7 MiB; o ZIP, 154,5 MiB. A captura dos créditos foi atualizada a partir do executável real. A execução do Actions e a Release correspondentes podem ser consultadas no GitHub; sucesso do build não substitui o teste de atualização ainda não relatado.
+
+### Publicação confirmada
+
+A [execução 34707727230](https://github.com/grbvieira/Roleta-de-Operacoes/actions/runs/34707727230) terminou com sucesso nos dois jobs. A [Release v1.1.0](https://github.com/grbvieira/Roleta-de-Operacoes/releases/tag/v1.1.0) está publicada, marcada como versão mais recente e corresponde ao commit `1f529064c17fdf418c21fff10075ca949b733696`.
+
+O instalador publicado foi baixado e seu SHA-256 coincide com o digest do anexo e com as notas da Release: `c91e2948b3f19fd4f73f15a6bff8f9c6a4c90e40af927f2917be2de9ac607442`. As notas em português e o histórico automático estão presentes. A Release v1.0.0 mantém o commit e o digest anteriores. Essa conferência do download não executou o instalador.
