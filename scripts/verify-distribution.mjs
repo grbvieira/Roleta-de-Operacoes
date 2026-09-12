@@ -15,7 +15,7 @@ const sources = [
   'desktop/main.cjs', 'desktop/preload.cjs', 'app/index.html', 'app/styles.css', 'app/renderer.mjs', 'app/help.mjs',
   'app/core/math.mjs', 'app/core/wheel.mjs', 'app/assets/cenario-escola.png',
   'app/assets/professor-arnaldo.png', 'app/assets/estudantes-sala.png', 'app/assets/estudantes-roleta.png',
-  'app/assets/app.ico', 'app/assets/app-icon.svg', 'app/assets/ORIGEM.md', 'app/license.mjs', 'LICENSE.txt'
+  'app/assets/app.ico', 'app/assets/app-icon.svg', 'app/assets/ORIGEM.md', 'app/license.mjs'
 ];
 for (const file of sources) {
   assert.deepEqual(extractFile(archive, path.normalize(file)), await readFile(path.join(root, file)), `versão empacotada desatualizada: ${file}`);
@@ -26,6 +26,7 @@ assert.equal(metadata.version, sourceMetadata.version, 'versão empacotada desat
 assert.equal(metadata.license, sourceMetadata.license);
 assert.deepEqual(await readFile(path.join(root, 'dist', 'win-unpacked', 'LEIA-ME.txt')),
   await readFile(path.join(root, 'LEIA-ME.txt')), 'guia de uso empacotado desatualizado');
+// extraFiles are placed beside the executable, not inside app.asar.
 for (const [source, target] of [
   ['LICENSE.txt', 'LICENSE.txt'],
   ['AVISOS-TERCEIROS.txt', 'AVISOS-TERCEIROS.txt'],
