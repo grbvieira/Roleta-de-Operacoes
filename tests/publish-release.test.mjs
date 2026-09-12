@@ -53,7 +53,8 @@ function fixture(options = {}) {
     args: {
       github, context: { repo: { owner: 'owner', repo: 'repo' }, sha: 'tested-commit' },
       core: { info() {}, error() {} }, tag: 'v2.3.4', version: '2.3.4',
-      installerPath: path.join(directory, installer), expectedSha256: checksum
+      installerPath: path.join(directory, installer), expectedSha256: checksum,
+      releaseNotes: 'Novidades desta versão: ajuda disponível offline.'
     }
   };
 }
@@ -66,6 +67,8 @@ test('publica somente depois de criar rascunho e confirmar o anexo', async () =>
   assert.equal(create.draft, true);
   assert.equal(create.generate_release_notes, true);
   assert.equal(create.tag_name, 'v2.3.4');
+  assert.ok(create.body.startsWith(args.releaseNotes));
+  assert.ok(create.body.includes(checksum));
   assert.equal(calls.find(call => call.name === 'upload').args.name, installer);
   assert.equal(calls.at(-1).args.draft, false);
   assert.equal(calls.at(-1).args.release_id, 42);
@@ -83,6 +86,7 @@ test('instalador ausente ou adulterado impede qualquer chamada à API', async ()
   for (const changes of [
     { installerPath: path.join(directory, 'missing', installer) },
     { expectedSha256: 'incorrect-hash' },
+    { releaseNotes: '' },
     { tag: 'v2.3.5' }
   ]) {
     const { args, calls } = fixture();

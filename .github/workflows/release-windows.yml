@@ -117,10 +117,12 @@ jobs:
           script: |
             const path = require('node:path');
             const publishRelease = require('./scripts/publish-release.cjs');
+            const { readFile } = require('node:fs/promises');
             await publishRelease({
               github, context, core,
               tag: process.env.RELEASE_TAG,
               version: process.env.APP_VERSION,
               installerPath: path.join('release-artifacts', process.env.INSTALLER_NAME),
-              expectedSha256: process.env.INSTALLER_SHA256
+              expectedSha256: process.env.INSTALLER_SHA256,
+              releaseNotes: await readFile(path.join('docs', 'notas', `${process.env.RELEASE_TAG}.md`), 'utf8')
             });

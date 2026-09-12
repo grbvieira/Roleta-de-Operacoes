@@ -21,6 +21,10 @@ git push origin v1.0.1
 
 `npm version` atualiza o manifesto e o lock. A opção `--no-git-tag-version` deixa a criação do commit e da tag para os comandos seguintes. **O último comando inicia a compilação e pode publicar a Release.**
 
+Antes do commit, escreva as notas em português em `docs/notas/vX.Y.Z.md` e inclua esse arquivo no commit da versão. O job de publicação exige esse arquivo e acrescenta a ele o hash do instalador e o histórico automático do GitHub. Sem notas, a publicação para antes de criar a Release.
+
+Quando houver novas funcionalidades, use incremento minor; para somente correções e documentação, use patch. A v1.1.0 acrescenta a ajuda e os novos recursos visuais desde a v1.0.0.
+
 Para lançar a versão atual sem incrementá-la, confira os arquivos com `npm.cmd run verify:release -- v1.0.0` e use a tag correspondente ao commit desejado. Não recrie nem mova uma tag que já foi publicada. Correções de uma versão entregue devem receber outro número.
 
 O PowerPoint original não participa do pipeline. As imagens, o ícone e o guia de uso já estão no repositório. O `LEIA-ME.txt` não contém um número de versão fixo; a versão do executável e os nomes dos pacotes vêm de `package.json`.
@@ -59,5 +63,7 @@ Get-FileHash -Algorithm SHA256 -LiteralPath .\Roleta-Operacoes-1.0.1-Windows-x64
 A primeira execução completa foi aprovada para a tag `v1.0.0`: [execução do Actions](https://github.com/grbvieira/Roleta-de-Operacoes/actions/runs/34555907287) e [Release publicada](https://github.com/grbvieira/Roleta-de-Operacoes/releases/tag/v1.0.0). Os testes da publicação feitos localmente continuam usando uma API simulada, sem criar Releases.
 
 O instalador continua sem assinatura digital. O Actions não valida o assistente de instalação nem o hardware da escola. A primeira abertura desconectada, as permissões do usuário e a leitura no projetor seguem o [roteiro de validação](validacao.md).
+
+O usuário relatou funcionamento na escola e desinstalação concluídos. Esses relatos não comprovam teste de atualização entre versões; veja o registro para distinguir cobertura local, CI e uso informado.
 
 Referências: [permissões por job](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idpermissions), [API de Releases e notas automáticas](https://docs.github.com/en/rest/releases/releases).

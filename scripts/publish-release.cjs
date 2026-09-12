@@ -4,7 +4,8 @@ const path = require('node:path');
 const { createHash } = require('node:crypto');
 const { distributionNames } = require('./release-config.cjs');
 
-module.exports = async function publishRelease({ github, context, core, tag, version, installerPath, expectedSha256 }) {
+module.exports = async function publishRelease({ github, context, core, tag, version, installerPath, expectedSha256, releaseNotes }) {
+  assert.ok(typeof releaseNotes === 'string' && releaseNotes.trim(), 'Notas da versão ausentes.');
   const { installer } = distributionNames(version);
   assert.equal(tag, `v${version}`, 'Tag e versão não correspondem.');
   assert.equal(path.basename(installerPath), installer, 'Nome inesperado para o instalador.');
@@ -34,7 +35,7 @@ module.exports = async function publishRelease({ github, context, core, tag, ver
     ...repo, tag_name: tag, target_commitish: context.sha,
     name: `Roleta de Operações ${tag}`, draft: true, prerelease: false,
     generate_release_notes: true,
-    body: `Instalador completo para Windows 10 e 11 x64. Funciona offline desde a primeira abertura.\n\nSHA-256 de ${installer}:\n\n\`${checksum}\`\n`
+    body: `${releaseNotes.trim()}\n\nInstalador completo para Windows 10 e 11 x64. Funciona offline desde a primeira abertura.\n\nSHA-256 de ${installer}:\n\n\`${checksum}\`\n`
   });
   try {
     const { data: asset } = await github.rest.repos.uploadReleaseAsset({
