@@ -1,4 +1,8 @@
-# Testes da versão 1.0.0
+# Registro de verificações
+
+Os registros são separados por etapa. A versão do manifesto continua em 1.0.0; as alterações locais posteriores à publicação ainda não integram a Release disponível no GitHub.
+
+## Distribuição inicial — 10/09/2026
 
 Registro dos testes realizados em 10/09/2026 no Windows x64, build 10.0.26200. Os resultados abaixo se referem à distribuição gerada nessa data.
 
@@ -54,6 +58,17 @@ Ainda falta validar no equipamento de destino:
 3. Legibilidade no projetor, escala da tela e modo de tela cheia.
 4. Fluidez do giro com o hardware e os drivers gráficos locais.
 
+Roteiro para a próxima versão, com a conta de usuário usada pelo professor:
+
+- Instalar pelo assistente e conferir os atalhos e os avisos de terceiros na pasta instalada.
+- Desligar a rede antes da primeira abertura. Abrir as quatro operações, ajustar intervalos, girar, conferir uma resposta e navegar pelas quatro seções da ajuda.
+- Projetar a tela e conferir contas, seta, botões e textos; alternar F11 e verificar que Escape fecha primeiro o diálogo.
+- Salvar intervalos diferentes por operação, fechar e reabrir. Conferir que os intervalos continuam salvos e que a atividade abre normalmente.
+- Instalar uma versão posterior sobre a anterior, conferir a versão em Sobre e a preservação dos intervalos. Esse teste depende da definição e geração dessa versão posterior.
+- Fechar o aplicativo, desinstalar pelas configurações do Windows e conferir a remoção do programa e dos atalhos. Registrar se o perfil local de configurações foi mantido ou removido.
+
+Instalação, atualização e desinstalação não foram executadas nesta etapa. Gerar o instalador e abrir `win-unpacked` não comprova esses procedimentos.
+
 Os testes automatizados não cobrem as políticas de execução da escola nem o desempenho no projetor. Eventuais bloqueios do executável sem assinatura precisam ser avaliados pela equipe de TI.
 
 ## Automação de Releases
@@ -82,3 +97,29 @@ O teste de cópia substitui temporariamente `clipboard.writeText` no processo de
 As capturas das três seções foram inspecionadas. A verificação da distribuição confere também `desktop/preload.cjs`, `app/help.mjs` e o `LEIA-ME.txt`. O `app.asar` dentro do ZIP foi comparado com o da pasta testada e é idêntico. O PowerPoint local mantém seu hash original.
 
 Esses resultados se referem ao código e ao pacote local atualizados. A Release v1.0.0 publicada anteriormente não foi alterada e ainda não contém a ajuda. A instalação e o teste no equipamento da escola permanecem pendentes.
+
+## Recursos visuais e créditos — verificações em 11/09/2026
+
+Nesta etapa foram feitas verificações pontuais, conforme solicitado. A suíte completa de testes unitários e de fluxos desktop não foi repetida. Os resultados da seção anterior pertencem à implementação inicial da ajuda, antes da troca das imagens e da inclusão da quarta seção.
+
+| Verificação executada | Resultado |
+| --- | --- |
+| `node scripts/check-assets.mjs` | Aprovada em desenvolvimento |
+| `npm.cmd run dist:win` | Instalador NSIS e ZIP x64 gerados localmente, sem publicação |
+| `npm.cmd run verify:distribution` | Código, novas imagens, ícones, guia e avisos conferidos; hashes das entregas gravados |
+| `node scripts/check-assets.mjs --packaged` | Aprovada no executável de `win-unpacked` |
+| Comparação adicional do ZIP | `app.asar`, guia e quatro arquivos de avisos idênticos aos da pasta empacotada |
+| `npm.cmd run verify:reference` | PowerPoint com o SHA-256 original |
+| Sintaxe dos scripts alterados e `git diff --check` | Sem erros |
+
+A verificação pontual abriu as quatro operações, decodificou os quatro novos PNGs e executou um giro de adição. A geometria do SVG confirmou o setor sob a seta; a resposta foi comparada com uma soma calculada separadamente. Abrir as quatro seções da ajuda e fechá-la preservou a roleta, a conta, a resposta e as configurações.
+
+As duas execuções usaram perfil novo e rede emulada offline. Não registraram erros JavaScript nem requisições externas HTTP/HTTPS/WS/WSS durante os fluxos observados. Foram conferidos o layout em 960 × 680, a ausência de rolagem horizontal e de sobreposição entre personagens e roleta, além de F11 e Escape fechando a ajuda sem sair da tela cheia.
+
+As capturas reais do menu, da atividade e dos créditos foram inspecionadas, incluindo janela menor e tela cheia. As capturas atualizadas estão em `docs/imagens/`; as anteriores foram preservadas em `docs/referencias/capturas-v1.0.0/`. Resultados e capturas locais ficam em `test-results/assets/` e `test-results/assets-packaged/`.
+
+Os PNGs mantêm os arquivos fornecidos, suas proporções e a transparência dos personagens. Os antigos recursos foram preservados fora da distribuição. O ícone foi inspecionado: seus símbolos vetoriais não usam as ilustrações antigas.
+
+O instalador gerado mede aproximadamente 114,7 MiB e o ZIP, 154,5 MiB. A conferência confirmou os novos recursos e os avisos originais do Electron, Chromium e NSIS; o PowerPoint, as referências antigas e os arquivos de desenvolvimento ficaram fora do pacote. Isso verifica o conteúdo preparado para distribuição, sem substituir o teste do assistente de instalação.
+
+Continuam pendentes a instalação, atualização, desinstalação e o uso real no projetor da escola, seguindo o roteiro acima. A procedência completa do avatar, os termos de uso e redistribuição das imagens e a licença do código dependem do responsável; veja [ORIGEM.md](../app/assets/ORIGEM.md) e o [inventário de terceiros](terceiros.md).

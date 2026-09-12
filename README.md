@@ -8,17 +8,19 @@ Funciona offline desde a primeira abertura, em Windows 10 e 11 x64. O instalador
 
 ## Baixar e instalar
 
-**[Baixar instalador para Windows — v1.0.0](https://github.com/grbvieira/Roleta-de-Operacoes/releases/download/v1.0.0/Roleta-Operacoes-1.0.0-Windows-x64-Instalador.exe)**
+**[Baixar para Windows — Release mais recente](https://github.com/grbvieira/Roleta-de-Operacoes/releases/latest)**
 
-1. Baixe o instalador pelo link acima.
+1. Abra a página acima e baixe o arquivo terminado em `Windows-x64-Instalador.exe`, na seção **Assets** da Release.
 2. Execute o arquivo e siga as instruções de instalação.
 3. Abra **Roleta de Operações** pelo atalho criado na área de trabalho ou no menu Iniciar.
 
 Você pode baixar o arquivo em outro computador e levá-lo à escola por pendrive. A instalação e a atividade funcionam sem internet; não é necessário instalar Node.js ou PowerPoint.
 
-As notas da versão e o SHA-256 do instalador estão na [Release v1.0.0](https://github.com/grbvieira/Roleta-de-Operacoes/releases/tag/v1.0.0). Para consultar outras versões, acesse [Releases](https://github.com/grbvieira/Roleta-de-Operacoes/releases).
+As notas da versão e o SHA-256 do instalador estão na página da Release. Para consultar outras versões, acesse [Releases](https://github.com/grbvieira/Roleta-de-Operacoes/releases). Dúvidas e sugestões: `gersonrbvieira@gmail.com`.
 
 ## Telas do aplicativo
+
+Capturas reais do aplicativo em desenvolvimento, com as alterações em preparação para a próxima versão. As [capturas da v1.0.0](docs/referencias/capturas-v1.0.0/) foram preservadas como referência.
 
 | Menu inicial | Adição |
 | --- | --- |
@@ -26,7 +28,7 @@ As notas da versão e o SHA-256 do instalador estão na [Release v1.0.0](https:/
 
 | Resposta revelada | Subtração |
 | --- | --- |
-| ![Conta 1 + 5 selecionada pela seta e resposta 6 revelada](docs/imagens/resposta-revelada.png) | ![Roleta de subtração sem resultados negativos](docs/imagens/subtracao.png) |
+| ![Conta selecionada pela seta e resposta revelada](docs/imagens/resposta-revelada.png) | ![Roleta de subtração sem resultados negativos](docs/imagens/subtracao.png) |
 
 | Multiplicação | Divisão |
 | --- | --- |
@@ -46,17 +48,22 @@ A roleta tem até dez contas diferentes. As subtrações têm resultado não neg
 
 ## Ajuda e informações
 
-O botão **Ajuda e informações**, no rodapé do menu e da atividade, abre três seções:
+O botão **Ajuda e informações**, no rodapé do menu e da atividade, abre quatro seções:
 
 - **Como usar:** guia para conduzir a atividade, ajustar os números e usar os atalhos.
 - **Sobre:** versão obtida do próprio aplicativo, autoria, crédito pedagógico e contato com o botão **Copiar e-mail**.
 - **Privacidade:** o que fica salvo no computador e como funciona o contato opcional.
+- **Créditos e licenças:** contribuição pedagógica, procedência dos recursos e avisos dos componentes distribuídos.
+
+![Seção Créditos e licenças na janela de ajuda](docs/imagens/creditos-licencas.png)
 
 A ajuda funciona offline. Use **Tab** para percorrer os controles e as setas, **Home** ou **End** para trocar de seção. Ao fechar, o foco volta ao botão de ajuda. Abrir a janela preserva a rodada, a seleção e a resposta; durante o giro, o botão fica temporariamente desabilitado.
 
 Os intervalos são armazenados por operação no perfil local do usuário. O aplicativo não tem cadastro, campos para dados de alunos, histórico salvo de respostas ou telemetria. Para entrar em contato, copie `gersonrbvieira@gmail.com` e use seu aplicativo de e-mail; o envio depende desse aplicativo e de internet.
 
-Esta área está disponível no código atual e nas distribuições geradas a partir dele. O instalador da Release **v1.0.0**, publicado anteriormente, ainda não inclui essa alteração.
+O código atual também usa novos cenário, grupos de estudantes e representação do professor, com elementos separados e proporções preservadas. A procedência informada e as pendências estão em [ORIGEM.md](app/assets/ORIGEM.md); os componentes distribuídos estão no [inventário de terceiros](docs/terceiros.md).
+
+Essas alterações estão em preparação para a próxima versão e não foram publicadas nesta etapa. Consulte as notas da Release baixada para saber quais recursos ela contém.
 
 ## Compatibilidade
 
@@ -125,6 +132,8 @@ Veja o [procedimento de lançamento](docs/releases.md) para atualizar a versão,
 - [Arquitetura](docs/arquitetura.md): módulos, regras das contas e cálculo do giro.
 - [Testes](docs/validacao.md): verificações realizadas e teste pendente na escola.
 - [Lançamentos](docs/releases.md): publicação do instalador pelo GitHub Actions.
-- [Origem das imagens](app/assets/ORIGEM.md): recursos aproveitados da apresentação.
+- [Próxima versão](docs/proxima-release.md): notas ainda não publicadas.
+- [Origem das imagens](app/assets/ORIGEM.md): recursos atuais e informações pendentes.
+- [Componentes e avisos](docs/terceiros.md): runtime, ferramentas e licenças de terceiros.
 
 O PowerPoint `roleta da adição.pptx` é uma referência local e está no `.gitignore`. As imagens necessárias já estão em `app/assets/`; o original não é necessário para executar ou empacotar o projeto. Quem tiver o arquivo na raiz pode conferir sua integridade com `npm.cmd run verify:reference`.

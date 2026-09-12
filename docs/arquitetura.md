@@ -55,8 +55,12 @@ O texto de privacidade corresponde ao armazenamento `roleta-settings-v1`: mínim
 
 O pacote inclui o Electron e as imagens. `LEIA-ME.txt` acompanha a distribuição como guia de uso; o PowerPoint, os testes e as ferramentas de desenvolvimento ficam fora dela. As versões das dependências estão fixadas em `package.json` e `package-lock.json`.
 
+Os avisos de terceiros acompanham o executável e são descritos na seção **Créditos e licenças** da ajuda. O [inventário](terceiros.md) distingue os componentes do runtime das ferramentas de desenvolvimento.
+
 ## Referência visual
 
 O arquivo `roleta da adição.pptx` é uma referência local, ignorada pelo Git. Ele contém três slides com roletas de dez setores para adição, subtração e multiplicação. As imagens usadas pelo aplicativo estão em `app/assets/`; a origem de cada uma está em [ORIGEM.md](../app/assets/ORIGEM.md).
 
 Os personagens ocupam o menu e a lateral da atividade, sem cobrir a roleta. O PowerPoint não é necessário para executar, testar a atividade ou gerar a distribuição. Quem tiver o original na raiz pode conferir sua integridade com `npm.cmd run verify:reference`.
+
+A cena usa `cenario-escola.png`, `professor-arnaldo.png` e `estudantes-sala.png` como elementos separados. A lateral usa o mesmo professor e `estudantes-roleta.png`. As imagens anteriores permanecem em `docs/referencias/assets-originais/`, fora do pacote; o ícone vetorial não incorpora essas ilustrações.
